@@ -40,10 +40,10 @@ def clickAndReturnMouseCoords(coords):
     pyautogui.moveTo(orig_x, orig_y)
     return
   
-def clickLongPress(coords):
+def clickLongPress(coords,press_time):
     pyautogui.moveTo(coords[0], coords[1])
     pyautogui.mouseDown()
-    time.sleep(2)
+    time.sleep(press_time)
     pyautogui.mouseUp()
     return
 

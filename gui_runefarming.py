@@ -325,7 +325,6 @@ class StartScreen(GridLayout):
         self.calibration['fodder_left'] = functions_general.fromStringToTuple(self.config.get('calibration', 'fodder_left'))
         self.calibration['level_top_left'] = functions_general.fromStringToTuple(self.config.get('calibration', 'level_top_left'))
         self.calibration['level_bottom_right'] = functions_general.fromStringToTuple(self.config.get('calibration', 'level_bottom_right'))
-        self.calibration['level_close'] = functions_general.fromStringToTuple(self.config.get('calibration', 'level_close'))
         self.calibration['scroll_left_first'] = functions_general.fromStringToTuple(self.config.get('calibration', 'scroll_left_first'))
         self.calibration['scroll_left_last'] = functions_general.fromStringToTuple(self.config.get('calibration', 'scroll_left_last'))
         self.calibration['numoffoddersinlist'] = int(self.config.get('calibration', 'numoffoddersinlist'))

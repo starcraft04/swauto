@@ -7,7 +7,9 @@ import functions_screenshot
 from ConfigParser import SafeConfigParser
 
 def coordsRelToPoint(origin,point):
-    result = (origin[0] - point[0] , origin[1] - point[1])
+
+    result = (int(origin[0]) - int(point[0]) , int(origin[1]) - int(point[1]))
+
     return result
 
 def calibrate(configFile,tolerance,directories,allConfigs):
@@ -62,13 +64,7 @@ def calibrate(configFile,tolerance,directories,allConfigs):
     level_bottom_right = coordsRelToPoint(start_battle,level_bottom_right)
     config.set('calibration', 'level_bottom_right', str(level_bottom_right))
     
-    print ('7) Position the cursor to the center of the x to close the window')
-    raw_input("Press Enter to continue...")
-    level_close = pyautogui.position()
-    level_close = coordsRelToPoint(start_battle,level_close)
-    config.set('calibration', 'level_close', str(level_close))
-    
-    print ('Now close the window')
+    print ('7) Now close the window')
     raw_input("Press Enter to continue...")
     
     print ('8) Position the cursor to the most left side of the first monster in your select monster list')

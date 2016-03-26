@@ -208,7 +208,10 @@ def main():
     wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
     wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
     wait_times['room_in_inventory'] = int(config.get('wait','room_in_inventory'))
-    
+    wait_times['long_press_time'] = int(config.get('wait','long_press_time'))
+    wait_times['max_monster_info_screen'] = int(config.get('wait','max_monster_info_screen'))
+    wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
+
     allConfigs['wait_times'] = wait_times
     
     myPath = os.path.dirname(os.path.abspath(__file__))
@@ -225,7 +228,6 @@ def main():
     calibration['fodder_left'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_left'))
     calibration['level_top_left'] = functions_general.fromStringToTuple(config.get('calibration', 'level_top_left'))
     calibration['level_bottom_right'] = functions_general.fromStringToTuple(config.get('calibration', 'level_bottom_right'))
-    calibration['level_close'] = functions_general.fromStringToTuple(config.get('calibration', 'level_close'))
     calibration['scroll_left_first'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_first'))
     calibration['scroll_left_last'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_last'))
     calibration['numoffoddersinlist'] = int(config.get('calibration', 'numoffoddersinlist'))
