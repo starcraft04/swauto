@@ -24,6 +24,7 @@ def initConfigs():
     allConfigs = {}
     
     allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
+    allConfigs['memoryFiles'] = 'memory.ini'
  
     tolerance = dict(config.items('tolerance'))
 
@@ -96,12 +97,9 @@ def initConfigs():
     
     allConfigs['position'] = position
 
-
-    
     return tolerance, wait_times, directories, calibration, allConfigs
 
 def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
-
     #Init
     numOf = {}
        
@@ -117,8 +115,15 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
     printNumOf['unknown'] = 0    
     printNumOf['recharge'] = int(recharge)
     
+    numOfTime = 0
+    endLoop = False
     #Looping
-    for numOfTime in xrange(1,int(number_of_time)+1):
+    while not endLoop:
+        numOfTime += 1
+            
+        if number_of_time > 0 and numOfTime == number_of_time + 1:
+            break
+
         victory_found = False
         
         numOf['fodder_full'] = 0
@@ -298,6 +303,7 @@ def main():
     if args.calibration:
         functions_calibration.calibrate(configFile,tolerance,directories,allConfigs)
         sys.exit(0)
+        
     if args.swap_monsters:
         functions_change_fodders.swapMonsters(tolerance,directories,calibration,int(args.swap_monsters[0]),allConfigs)
         sys.exit(0)    

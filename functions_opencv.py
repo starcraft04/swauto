@@ -176,11 +176,16 @@ def findPicture(screenshot,template, tolerance,allConfigs, multiple = False):
         logging.debug('*************End of checkPicture')
         return {'res': True,'points':all_matches}
     else:
+        bottom_right = (top_left[0] + w, top_left[1] + h)
+        center = (top_left[0] + (w/2), top_left[1] + (h/2))
+        all_matches = [{'top_left':top_left,'bottom_right':bottom_right,'center':center,'tolerance':best_val}]
+
         logging.debug('Could not find a value above tolerance')
         logging.debug('*************End of checkPicture')
-        return {'res': False,'best_val':best_val}
+        return {'res': False,'best_val':best_val,'points':all_matches}
 
 def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfigs,multiple = False, showFound = False, saveFound = False):
+    
     #This is an intermediary function so that the actual function doesn't include too much specific arguments
 
     if templateFile[:-4] in tolerance_list:
@@ -212,23 +217,26 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
     
     if not result['res']:
         logging.debug('Best value found for %s is: %f',templateFile,result['best_val'])
+        color_showFound = (0,0,255)
     else:
         logging.info('Image %s found',templateFile)
         if logging.getLogger().getEffectiveLevel() == 10:
             saveFound = True
-        if saveFound or showFound:
-            screenshot_with_rectangle = screenshot.copy()
-            for pt in result['points']:
-                cv2.rectangle(screenshot_with_rectangle, pt['top_left'], pt['bottom_right'], 255, 2)
-                fileName_top_left = (pt['top_left'][0],pt['top_left'][1]-10)
-                cv2.putText(screenshot_with_rectangle,str(pt['tolerance'])[:4],fileName_top_left, font, 1,(255,255,255),2)
-            if saveFound:
-                #Now we save to the file if needed
-                filename = time.strftime("%Y%m%d-%H%M%S") + '_' + templateFile[:-4] + '.jpg'
-                cv2.imwrite(os.path.join(directories['debugdir'] , filename), screenshot_with_rectangle)
-            if showFound:
-                cv2.imshow('showFound',screenshot_with_rectangle)
-                cv2.waitKey(0)
+        color_showFound = (0,255,0)
+            
+    if saveFound or showFound:
+        screenshot_with_rectangle = screenshot.copy()
+        for pt in result['points']:
+            cv2.rectangle(screenshot_with_rectangle, pt['top_left'], pt['bottom_right'], color_showFound, 2)
+            fileName_top_left = (pt['top_left'][0],pt['top_left'][1]-10)
+            cv2.putText(screenshot_with_rectangle,str(pt['tolerance'])[:4],fileName_top_left, font, 1,color_showFound,2)
+        if saveFound:
+            #Now we save to the file if needed
+            filename = time.strftime("%Y%m%d-%H%M%S") + '_' + templateFile[:-4] + '.jpg'
+            cv2.imwrite(os.path.join(directories['debugdir'] , filename), screenshot_with_rectangle)
+        if showFound:
+            cv2.imshow('showFound',screenshot_with_rectangle)
+            cv2.waitKey(0)
                 
     result['name']=templateFile
     
