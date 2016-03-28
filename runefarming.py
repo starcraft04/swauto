@@ -138,7 +138,10 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
         numOf['unknown'] = 0
         running = True
         
-        print ('Run number: %d/%d' % (numOfTime,int(number_of_time)))
+        if number_of_time > 0:
+            print ('Run number: %d/%d' % (numOfTime,int(number_of_time)))
+        else:
+            print ('Run number: %d' % (numOfTime))
         
         while running:
             waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
@@ -256,7 +259,7 @@ def main():
     parser.add_argument('-nf','--no_change_fodders', help='This will tell the program not to change fodders and stop when all fodders are full', required=False, action='store_true')
     parser.add_argument("-l", "--log", dest="logLevel", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help="Set the logging level")
     parser.add_argument('-r','--recharge', default='0' , help='This is the number of recharges you want', required=False)
-    parser.add_argument('-n','--number_of_time', default='1000' , help='This is the number of times you want the stage to be run', required=False)
+    parser.add_argument('-n','--number_of_time', default='0' , help='This is the number of times you want the stage to be run', required=False)
     parser.add_argument('-t','--stage_type', choices=['cairos','essence','xp', 'toa','hoh'], help='This is the stage that you want to automate.', required=False)
     parser.add_argument('-s','--stage_name', help='This is the stage that you want to automate. Can be any name and is there more for logging purpose', required=False)
     parser.add_argument('-tst','--test', nargs=1, help='Just give the name of the picture to be tested through the screenshot', required=False)
@@ -267,15 +270,18 @@ def main():
     tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
 
     args = parser.parse_args()
+    logginFormat = '%(asctime)s [%(levelname)s][%(funcName)s]: %(message)s'
 
     if args.logLevel:
         if args.log_console:
-            logging.basicConfig(level=args.logLevel,\
-                            format='%(asctime)s:%(levelname)s:%(message)s')
+            logging.basicConfig(level=args.logLevel,
+                            datefmt='%Y/%m/%d %H:%M:%S',
+                            format=logginFormat)
         else:
-            logging.basicConfig(filename='runefarming.log',\
-                            level=args.logLevel,\
-                            format='%(asctime)s:%(levelname)s:%(message)s')
+            logging.basicConfig(filename='runefarming.log',
+                            level=args.logLevel,
+                            datefmt='%y%m%d %H:%M:%S',
+                            format=logginFormat)
 
 
     if args.position:

@@ -1,0 +1,2 @@
+160329 00:30:50 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160329 00:30:50 [INFO][waitForImg]: Waiting for maximum 600 seconds
