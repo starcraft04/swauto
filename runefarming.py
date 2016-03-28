@@ -53,8 +53,14 @@ def initConfigs():
     wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
 
     allConfigs['wait_times'] = wait_times
-    
-    myPath = os.path.dirname(os.path.abspath(__file__))
+	
+    if getattr(sys, 'frozen', False):
+	    # frozen
+	    myPath = os.path.dirname(sys.executable)
+    else:
+        # unfrozen
+        myPath = os.path.dirname(os.path.realpath(__file__))
+	
     directories = {}
     directories['basepicsdir'] = os.path.join(myPath,config.get('dir', 'basepics'))
     directories['debugdir'] = os.path.join(myPath,config.get('dir', 'debug'))
