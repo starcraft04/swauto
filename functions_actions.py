@@ -141,7 +141,11 @@ def actionGiftTOAHOH(tolerance, stage_type, stage_name, wait_times,directories,a
     #Searching for OK button
     button_ok = functions_opencv.waitForImg(['ok.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
     crop_square = (button_ok['points'][0]['center'][0] - 160,button_ok['points'][0]['center'][1] - 220,button_ok['points'][0]['center'][0] + 155,button_ok['points'][0]['center'][1] + 35)
-    functions_screenshot.takeScreenshotCoords(stage_type+'_'+stage_name+'.png',directories,crop_square,allConfigs)
+    if stage_type == 'toa' or stage_type == 'hoh':
+        image_name = stage_type+'_'+stage_name+'.png'
+    elif stage_type == 'essence':
+        image_name = time.strftime("%Y%m%d-%H%M%S")+'_' + stage_type+'_'+stage_name+'.png'
+    functions_screenshot.takeScreenshotCoords(image_name,directories,crop_square,allConfigs)
     functions_opencv.clickAndReturnMouse(button_ok)
     functions_general.randomWait( wait_time,random_wait )
     return

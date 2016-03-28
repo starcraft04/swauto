@@ -11,7 +11,88 @@ import functions_general
 import functions_calibration
 import functions_change_fodders
 
-from ConfigParser import SafeConfigParser 
+from ConfigParser import SafeConfigParser
+
+def initConfigs():
+    
+    #Loading all configs
+    #We read the config file
+    configFile = 'runefarming.ini'
+    config = SafeConfigParser()
+    config.read(configFile)
+    
+    allConfigs = {}
+    
+    allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
+ 
+    tolerance = dict(config.items('tolerance'))
+
+    allConfigs['tolerance'] = tolerance
+
+    wait_times = {}
+    wait_times['image_wait'] = int(config.get('wait','image'))
+    wait_times['max_wait_seconds'] = int(config.get('wait','max_wait_seconds'))
+    wait_times['max_run_wait_seconds'] = int(config.get('wait','max_run_wait_seconds'))
+    wait_times['screen_victory_wait'] = int(config.get('wait','victory'))
+    wait_times['screen_networkDelayed_wait'] = int(config.get('wait','networkDelayed'))
+    wait_times['screen_autorun_wait'] = int(config.get('wait','autorun'))
+    wait_times['screen_revive_wait'] = int(config.get('wait','revive'))
+    wait_times['screen_defeated_wait'] = int(config.get('wait','defeated'))
+    wait_times['screen_replay_wait'] = int(config.get('wait','replay'))
+    wait_times['screen_startBattle_wait'] = int(config.get('wait','startBattle'))
+    wait_times['screen_notEnoughEnergy_wait'] = int(config.get('wait','notEnoughEnergy'))
+    wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
+    wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
+    wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
+    wait_times['screen_wait_random'] = int(config.get('wait','random'))
+    wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
+    wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
+    wait_times['room_in_inventory'] = int(config.get('wait','room_in_inventory'))
+    wait_times['long_press_time'] = int(config.get('wait','long_press_time'))
+    wait_times['max_monster_info_screen'] = int(config.get('wait','max_monster_info_screen'))
+    wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
+
+    allConfigs['wait_times'] = wait_times
+    
+    myPath = os.path.dirname(os.path.abspath(__file__))
+    directories = {}
+    directories['basepicsdir'] = os.path.join(myPath,config.get('dir', 'basepics'))
+    directories['debugdir'] = os.path.join(myPath,config.get('dir', 'debug'))
+    directories['picsdir'] = os.path.join(myPath,config.get('dir', 'savedpics'))
+
+    allConfigs['directories'] = directories
+
+    calibration = {}
+    calibration['fodder_right'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_right'))
+    calibration['fodder_bottom'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_bottom'))
+    calibration['fodder_left'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_left'))
+    calibration['level_top_left'] = functions_general.fromStringToTuple(config.get('calibration', 'level_top_left'))
+    calibration['level_bottom_right'] = functions_general.fromStringToTuple(config.get('calibration', 'level_bottom_right'))
+    calibration['scroll_left_first'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_first'))
+    calibration['scroll_left_last'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_last'))
+    calibration['numoffoddersinlist'] = int(config.get('calibration', 'numoffoddersinlist'))
+    calibration['monster_icon_width'] = int(config.get('calibration', 'monster_icon_width'))
+    for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
+        calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_'+str(i)+'_center'))
+
+    allConfigs['calibration'] = calibration
+
+    resize = {}
+    resize['resize_or_not'] = config.getboolean('resize','resize_or_not')
+    resize['rapport'] = config.getfloat('resize','rapport')
+
+    allConfigs['resize'] = resize
+    
+    position = {}
+    position['window_pos_x'] = int(config.get('position','window_pos_x'))
+    position['window_pos_y'] = int(config.get('position','window_pos_y'))
+    position['window_width'] = int(config.get('position','window_width'))
+    
+    allConfigs['position'] = position
+
+
+    
+    return tolerance, wait_times, directories, calibration, allConfigs
 
 def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
 
@@ -122,7 +203,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
                 if stage_type == 'cairos' or stage_type == 'xp':
                     gift = functions_actions.actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
                     numOf[gift] += 1
-                elif stage_type == 'toa' or stage_type == 'hoh':
+                elif stage_type == 'toa' or stage_type == 'hoh' or stage_type == 'essence':
                     functions_actions.actionGiftTOAHOH(tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
 
                 #Printing stats and updating the CSV
@@ -165,83 +246,16 @@ def main():
     parser.add_argument("-l", "--log", dest="logLevel", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help="Set the logging level")
     parser.add_argument('-r','--recharge', default='0' , help='This is the number of recharges you want', required=False)
     parser.add_argument('-n','--number_of_time', default='1000' , help='This is the number of times you want the stage to be run', required=False)
-    parser.add_argument('-t','--stage_type', choices=['cairos', 'xp', 'toa','hoh'], help='This is the stage that you want to automate.', required=False)
+    parser.add_argument('-t','--stage_type', choices=['cairos','essence','xp', 'toa','hoh'], help='This is the stage that you want to automate.', required=False)
     parser.add_argument('-s','--stage_name', help='This is the stage that you want to automate. Can be any name and is there more for logging purpose', required=False)
     parser.add_argument('-tst','--test', nargs=1, help='Just give the name of the picture to be tested through the screenshot', required=False)
     parser.add_argument('-c','--calibration', help='This will do the calibration for the fodders', required=False, action='store_true')
     parser.add_argument('-lc','--log_console', help='This will log to console', required=False, action='store_true')
     parser.add_argument('-sm','--swap_monsters', nargs=1, help='This will swap the monsters that are max, you have to enter the number of fodders that are full for consistency test', required=False)
 
+    tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
 
     args = parser.parse_args()
-    
-    #Loading all configs
-    #We read the config file
-    configFile = 'runefarming.ini'
-    config = SafeConfigParser()
-    config.read(configFile)
-    
-    allConfigs = {}
-    
-    allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
- 
-    tolerance = dict(config.items('tolerance'))
-
-    allConfigs['tolerance'] = tolerance
-
-    wait_times = {}
-    wait_times['image_wait'] = int(config.get('wait','image'))
-    wait_times['max_wait_seconds'] = int(config.get('wait','max_wait_seconds'))
-    wait_times['max_run_wait_seconds'] = int(config.get('wait','max_run_wait_seconds'))
-    wait_times['screen_victory_wait'] = int(config.get('wait','victory'))
-    wait_times['screen_networkDelayed_wait'] = int(config.get('wait','networkDelayed'))
-    wait_times['screen_autorun_wait'] = int(config.get('wait','autorun'))
-    wait_times['screen_revive_wait'] = int(config.get('wait','revive'))
-    wait_times['screen_defeated_wait'] = int(config.get('wait','defeated'))
-    wait_times['screen_replay_wait'] = int(config.get('wait','replay'))
-    wait_times['screen_startBattle_wait'] = int(config.get('wait','startBattle'))
-    wait_times['screen_notEnoughEnergy_wait'] = int(config.get('wait','notEnoughEnergy'))
-    wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
-    wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
-    wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
-    wait_times['screen_wait_random'] = int(config.get('wait','random'))
-    wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
-    wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
-    wait_times['room_in_inventory'] = int(config.get('wait','room_in_inventory'))
-    wait_times['long_press_time'] = int(config.get('wait','long_press_time'))
-    wait_times['max_monster_info_screen'] = int(config.get('wait','max_monster_info_screen'))
-    wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
-
-    allConfigs['wait_times'] = wait_times
-    
-    myPath = os.path.dirname(os.path.abspath(__file__))
-    directories = {}
-    directories['basepicsdir'] = os.path.join(myPath,config.get('dir', 'basepics'))
-    directories['debugdir'] = os.path.join(myPath,config.get('dir', 'debug'))
-    directories['picsdir'] = os.path.join(myPath,config.get('dir', 'savedpics'))
-
-    allConfigs['directories'] = directories
-
-    calibration = {}
-    calibration['fodder_right'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_right'))
-    calibration['fodder_bottom'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_bottom'))
-    calibration['fodder_left'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_left'))
-    calibration['level_top_left'] = functions_general.fromStringToTuple(config.get('calibration', 'level_top_left'))
-    calibration['level_bottom_right'] = functions_general.fromStringToTuple(config.get('calibration', 'level_bottom_right'))
-    calibration['scroll_left_first'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_first'))
-    calibration['scroll_left_last'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_last'))
-    calibration['numoffoddersinlist'] = int(config.get('calibration', 'numoffoddersinlist'))
-    calibration['monster_icon_width'] = int(config.get('calibration', 'monster_icon_width'))
-    for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
-        calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_'+str(i)+'_center'))
-
-    allConfigs['calibration'] = calibration
-
-    resize = {}
-    resize['resize_or_not'] = config.getboolean('resize','resize_or_not')
-    resize['rapport'] = config.getfloat('resize','rapport')
-
-    allConfigs['resize'] = resize
 
     if args.logLevel:
         if args.log_console:
@@ -252,15 +266,13 @@ def main():
                             level=args.logLevel,\
                             format='%(asctime)s:%(levelname)s:%(message)s')
 
+
     if args.position:
         #Before Starting, make sure to use wmctrl -r Vysor -e 1,0,0,800,-1
         #The window size should be 800 x 450
         #This is to ensure we have always the same siz and that pixels won't be off
         #We read the config file
-        window_pos_x = int(config.get('position','window_pos_x'))
-        window_pos_y = int(config.get('position','window_pos_y'))
-        window_width = int(config.get('position','window_width'))
-        os.system('wmctrl -r Vysor -e 1,'+str(window_pos_x)+','+str(window_pos_y)+','+str(window_width)+',-1')
+        os.system('wmctrl -r Vysor -e 1,'+str(allConfigs['position']['window_pos_x'])+','+str(allConfigs['position']['window_pos_y'])+','+str(allConfigs['position']['window_width'])+',-1')
         #Now we make sure the window is active and in front on the desktop
         os.system('wmctrl -a Vysor')
         time.sleep(1)

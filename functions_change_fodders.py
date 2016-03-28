@@ -4,6 +4,7 @@ import sys
 import time
 import cv2
 import numpy as np
+import copy
 
 import functions_opencv
 import functions_screenshot
@@ -72,7 +73,7 @@ def initCoordsRelToStartBattle(tolerance,directories,calibration,allConfigs):
     if start_battle['res']:
         start_battle_center = (int(start_battle['points'][0]['center'][0]),int(start_battle['points'][0]['center'][1]))
 
-        new_calibration = calibration.copy()
+        new_calibration = copy.deepcopy(allConfigs['calibration'])
         
         new_calibration['fodder_right'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['fodder_right'])
         new_calibration['fodder_bottom'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['fodder_bottom'])
