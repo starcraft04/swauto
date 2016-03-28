@@ -1,14 +1,13 @@
 import sys
 from cx_Freeze import setup, Executable
 
-path = ['app'] + sys.path
 includefiles = ['basepics\\','debug\\','pics\\','memory.ini','runefarming.ini','runefarming.log','runefarming_fodders.ini','runefarming_stats.csv']
 includes = []
 excludes = ['Tkinter','Tk','Tcl']
-
+packages = []
 
 build_exe_options = {
-'path': path,
+'packages':packages,
 'include_files': includefiles,
 'includes': includes,
 'excludes': excludes

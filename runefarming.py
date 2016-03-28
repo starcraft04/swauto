@@ -309,7 +309,7 @@ def main():
         sys.exit(0)    
 
     if args.stage_name and args.stage_type:
-        running(args.stage_type,args.stage_name,args.no_change_fodders,args.recharge,args.number_of_time,tolerance, wait_times, directories,calibration,allConfigs)
+        running(args.stage_type,args.stage_name,args.no_change_fodders,args.recharge,int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
     else:
         print ('You must select a stage type and a stage name, help for more info')
 
