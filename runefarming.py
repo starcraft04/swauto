@@ -21,10 +21,15 @@ def initConfigs():
     config = SafeConfigParser()
     config.read(configFile)
     
+    calibrationFile = 'calibration.ini'
+    calibrationConfig = SafeConfigParser()
+    calibrationConfig.read(calibrationFile)
+    
     allConfigs = {}
     
     allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
     allConfigs['memoryFiles'] = 'memory.ini'
+    allConfigs['calibrationFiles'] = calibrationFile
  
     tolerance = dict(config.items('tolerance'))
 
@@ -70,17 +75,17 @@ def initConfigs():
     allConfigs['directories'] = directories
 
     calibration = {}
-    calibration['fodder_right'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_right'))
-    calibration['fodder_bottom'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_bottom'))
-    calibration['fodder_left'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_left'))
-    calibration['level_top_left'] = functions_general.fromStringToTuple(config.get('calibration', 'level_top_left'))
-    calibration['level_bottom_right'] = functions_general.fromStringToTuple(config.get('calibration', 'level_bottom_right'))
-    calibration['scroll_left_first'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_first'))
-    calibration['scroll_left_last'] = functions_general.fromStringToTuple(config.get('calibration', 'scroll_left_last'))
-    calibration['numoffoddersinlist'] = int(config.get('calibration', 'numoffoddersinlist'))
-    calibration['monster_icon_width'] = int(config.get('calibration', 'monster_icon_width'))
+    calibration['fodder_right'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_right'))
+    calibration['fodder_bottom'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_bottom'))
+    calibration['fodder_left'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_left'))
+    calibration['level_top_left'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'level_top_left'))
+    calibration['level_bottom_right'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'level_bottom_right'))
+    calibration['scroll_left_first'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_first'))
+    calibration['scroll_left_last'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_last'))
+    calibration['numoffoddersinlist'] = int(calibrationConfig.get('calibration', 'numoffoddersinlist'))
+    calibration['monster_icon_width'] = int(calibrationConfig.get('calibration', 'monster_icon_width'))
     for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
-        calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(config.get('calibration', 'fodder_'+str(i)+'_center'))
+        calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_'+str(i)+'_center'))
 
     allConfigs['calibration'] = calibration
 
@@ -307,7 +312,7 @@ def main():
         sys.exit(0)
 
     if args.calibration:
-        functions_calibration.calibrate(configFile,tolerance,directories,allConfigs)
+        functions_calibration.calibrate(allConfigs['calibrationFiles'],tolerance,directories,allConfigs)
         sys.exit(0)
         
     if args.swap_monsters:

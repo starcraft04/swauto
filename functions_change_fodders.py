@@ -5,6 +5,7 @@ import time
 import cv2
 import numpy as np
 import copy
+import os
 
 import functions_opencv
 import functions_screenshot
@@ -42,7 +43,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
     stars = {}
     stars['yellow'] = ['1','1','1','1','1','1']
     stars['pink'] = ['1','1','1','1','1','1']
-    stars['grey'] = ['1','1','1','0','0','0']
+    stars['grey'] = ['1','1','1','1','0','0']
     
     for starColor,starValue in stars.iteritems():
         if monster['numOfStars'] != '':
@@ -61,7 +62,12 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
                         logging.info ('monster with %s %s stars is maxed', i, starColor)
                     else:
                         logging.info ('monster with %s %s stars is not maxed', i, starColor)
-
+    if monster['numOfStars'] == '':
+        filename = time.strftime("%Y%m%d-%H%M%S")+'_monsterGetInfo_DEBUG.png'
+        print('Couldn\'t find an image matching this monster\'s stars, saving to file %s then exit' % filename)
+        cv2.imwrite(os.path.join(allConfigs['directories']['debugdir'] , filename), screenshot_with_info)
+        sys.exit(0)
+                        
     #Click x to leave window
     functions_opencv.clickAndReturnMouse(close_button)
     return monster
