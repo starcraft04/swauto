@@ -114,13 +114,13 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
 
     #We remove the monsters that are max
     monsters = {}
-    logging.info('Analysing right monster...')
-    
+    logging.info('Analysing right monster...')   
     monsters['right'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_right'],allConfigs)
-    monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_left'],allConfigs)
     logging.info('Analysing left monster...')
-    monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_bottom'],allConfigs)
+    monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_left'],allConfigs)
     logging.info('Analysing bottom monster...')
+    monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_bottom'],allConfigs)
+
 
     numOfMaxMonsters = 0
     for name,monster in monsters.iteritems():
@@ -150,7 +150,14 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
     for s in xrange(0,num_of_scroll):      
         screenshot = functions_screenshot.screenshotOpencv()
         #Now we check the different monsters in the list to verify if we can take them or not
-        for i in xrange(1,int(calibration_from_start['numoffoddersinlist'])+1):
+        #If we have done already one check, we go from the second monster in the list
+        if s == 0:
+            start_monster_list = 1
+        else:
+            start_monster_list = 2
+
+        for i in xrange(start_monster_list,int(calibration_from_start['numoffoddersinlist'])+1):
+            logging.info('Analysing monster %d in the list',i)
             if numOfMaxMonsters == 0:
                 break
             fodder = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_'+str(i)+'_center'],allConfigs)
@@ -159,7 +166,10 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
             if has_a_v:
                 logging.info('This monster is already selected')
                 continue
+            else:
+                logging.info('This monster is not already selected')
             fodder_num_of_stars = fodder['numOfStars']
+            print 
             if not fodder['max'] and max_num_of_fodders[fodder_num_of_stars+'_stars'] > 0:
                 functions_opencv.clickAndReturnMouseCoords(fodder['center'])
                 max_num_of_fodders[fodder_num_of_stars+'_stars'] -= 1
