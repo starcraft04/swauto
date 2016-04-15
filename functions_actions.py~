@@ -52,7 +52,7 @@ def actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,
         max_level = functions_opencv.checkPicture(screenshot,'max_level.png', tolerance, directories,allConfigs, multiple = True)
         if max_level['res']:
             fodder_full = len(max_level['points']) - 1
-        logging.info('-----------------> Number of monsters full: %d',fodder_full)
+        logging.info('Number of monsters full: %d',fodder_full)
     functions_opencv.clickAndReturnMouse(running_result)
     functions_general.randomWait( wait_time,random_wait )
     return fodder_full
@@ -75,7 +75,7 @@ def actionStartBattle(running_result, tolerance, wait_times,directories,calibrat
         logging.info('Number of fodders full: %s - Change fodders: %s',str(numOfFodderFull-1),str(not noChangeFodders))
         sys.exit(0)
     if numOfFodderFull > 0:
-        logging.info('-----------------> Changing %d fodders because they are max',numOfFodderFull)
+        logging.info('Changing %d fodders because they are max',numOfFodderFull)
         result = functions_change_fodders.swapMonsters(tolerance,directories,calibration,numOfFodderFull,allConfigs)
     functions_general.randomWait( 1,1 )
     functions_opencv.clickAndReturnMouse(running_result)

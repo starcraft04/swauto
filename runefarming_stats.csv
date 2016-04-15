@@ -1,6 +1,8 @@
 type,name,victory,defeat,runes,mystical_scrolls,unknown_scrolls,rainbowmon,summoning_stones,monster,unknown
 xp,hydeni,116,0,96,0,12,2,0,6,0
-cairos,dragon,6,0,6,0,0,0,0,0,0
+cairos,dragon,210,8,172,1,23,8,1,0,7
 essence,magicB10,4,0,0,0,0,0,0,0,0
 cairos,dragonB01,1,0,1,0,0,0,0,0,0
 cairos,dragonB10,1,0,1,0,0,0,0,0,0
+xp,faimon-normal,340,0,212,0,92,0,0,23,13
+cairos,giant,117,3,90,1,19,1,1,0,5

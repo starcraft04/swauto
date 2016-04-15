@@ -217,6 +217,7 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
     
     if not result['res']:
         logging.debug('Best value found for %s is: %f',templateFile,result['best_val'])
+        logging.debug('Point found is: %s',str(result['points']))
         color_showFound = (0,0,255)
     else:
         logging.info('Image %s found',templateFile)
