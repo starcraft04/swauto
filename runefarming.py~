@@ -50,7 +50,6 @@ def initConfigs():
     wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
     wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
     wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
-    wait_times['screen_nextstage_wait'] = int(config.get('wait','nextstage'))
     wait_times['screen_wait_random'] = int(config.get('wait','random'))
     wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
     wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))

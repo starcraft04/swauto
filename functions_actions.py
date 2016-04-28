@@ -39,7 +39,14 @@ def actionDefeated(running_result, tolerance, wait_times,directories,allConfigs)
     functions_opencv.clickAndReturnMouse(running_result)
     functions_general.randomWait( wait_time,random_wait )
     return
-    
+
+def actionNextStage(running_result, tolerance, wait_times,directories,allConfigs):
+    wait_time = wait_times['screen_defeated_wait']
+    random_wait = wait_times['screen_wait_random']
+    functions_opencv.clickAndReturnMouse(running_result)
+    functions_general.randomWait( wait_time,random_wait )
+    return
+   
 def actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs):
     wait_time = wait_times['screen_victory_wait']
     random_wait = wait_times['screen_wait_random']

@@ -35,7 +35,6 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
     crop_info = (calibration['level_top_left'],calibration['level_bottom_right'])
     screenshot_with_info = functions_opencv.cropToCoords(screenshot,crop_info)
 
-
     #Preparing the monster
     monster = {}
     monster['center'] = coords

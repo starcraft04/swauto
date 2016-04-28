@@ -58,7 +58,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
                 if starFound['res']:
                     monster['numOfStars'] = str(i)
                     monster['starColor'] = starColor
-                    maxFound = functions_opencv.checkPicture(screenshot_with_info,str(i)+'_stars_max.png', tolerance,directories,allConfigs,saveFound = True)
+                    maxFound = functions_opencv.checkPicture(screenshot_with_info,str(i)+'_stars_max.png', tolerance,directories,allConfigs,saveFound = False)
                     if maxFound['res']:
                         monster['max'] = True
                         logging.info ('-----------------> monster with %s %s stars is maxed', i, starColor)
