@@ -1,2 +1,829 @@
-160329 00:30:50 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
-160329 00:30:50 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:41:35 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:41:35 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:41:35 [INFO][checkPicture]: Image start_battle.png found
+160509 20:41:37 [INFO][clickAndReturnMouse]: CLICK
+160509 20:41:39 [INFO][running]: **********************************
+160509 20:41:39 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:41:39 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:47:52 [INFO][checkPicture]: Image victory.png found
+160509 20:47:53 [INFO][clickAndReturnMouse]: CLICK
+160509 20:47:54 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:47:54 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:47:55 [INFO][checkPicture]: Image chest.png found
+160509 20:47:55 [INFO][clickAndReturnMouse]: CLICK
+160509 20:47:58 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 20:47:58 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 20:48:00 [INFO][checkPicture]: Image rune_sell.png found
+160509 20:48:00 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 20:48:01 [INFO][checkPicture]: Image rune_get.png found
+160509 20:48:01 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 20:48:01 [INFO][clickAndReturnMouse]: CLICK
+160509 20:48:04 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:48:04 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:48:06 [INFO][checkPicture]: Image replay.png found
+160509 20:48:06 [INFO][clickAndReturnMouse]: CLICK
+160509 20:48:09 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:48:09 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:48:09 [INFO][checkPicture]: Image start_battle.png found
+160509 20:48:11 [INFO][clickAndReturnMouse]: CLICK
+160509 20:48:12 [INFO][running]: **********************************
+160509 20:48:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:48:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:54:41 [INFO][checkPicture]: Image victory.png found
+160509 20:54:41 [INFO][clickAndReturnMouse]: CLICK
+160509 20:54:44 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:54:44 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:54:45 [INFO][checkPicture]: Image chest.png found
+160509 20:54:45 [INFO][clickAndReturnMouse]: CLICK
+160509 20:54:47 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 20:54:47 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 20:54:49 [INFO][checkPicture]: Image rune_sell.png found
+160509 20:54:49 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 20:54:50 [INFO][checkPicture]: Image rune_get.png found
+160509 20:54:50 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 20:54:50 [INFO][clickAndReturnMouse]: CLICK
+160509 20:54:54 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:54:54 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:54:55 [INFO][checkPicture]: Image replay.png found
+160509 20:54:56 [INFO][clickAndReturnMouse]: CLICK
+160509 20:54:58 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:54:58 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 20:54:58 [INFO][checkPicture]: Image start_battle.png found
+160509 20:55:00 [INFO][clickAndReturnMouse]: CLICK
+160509 20:55:03 [INFO][running]: **********************************
+160509 20:55:03 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 20:55:03 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:01:52 [INFO][checkPicture]: Image victory.png found
+160509 21:01:52 [INFO][clickAndReturnMouse]: CLICK
+160509 21:01:55 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:01:55 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:01:56 [INFO][checkPicture]: Image chest.png found
+160509 21:01:57 [INFO][clickAndReturnMouse]: CLICK
+160509 21:02:00 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:02:00 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:02:02 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:02:02 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:02:02 [INFO][checkPicture]: Image rune_get.png found
+160509 21:02:02 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:02:02 [INFO][clickAndReturnMouse]: CLICK
+160509 21:02:07 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:02:07 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:02:08 [INFO][checkPicture]: Image replay.png found
+160509 21:02:08 [INFO][clickAndReturnMouse]: CLICK
+160509 21:02:10 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:02:10 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:02:11 [INFO][checkPicture]: Image start_battle.png found
+160509 21:02:13 [INFO][clickAndReturnMouse]: CLICK
+160509 21:02:16 [INFO][running]: **********************************
+160509 21:02:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:02:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:09:39 [INFO][checkPicture]: Image victory.png found
+160509 21:09:40 [INFO][clickAndReturnMouse]: CLICK
+160509 21:09:41 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:09:41 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:09:42 [INFO][checkPicture]: Image chest.png found
+160509 21:09:42 [INFO][clickAndReturnMouse]: CLICK
+160509 21:09:45 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:09:45 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:09:47 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:09:47 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:09:48 [INFO][checkPicture]: Image rune_get.png found
+160509 21:09:48 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:09:48 [INFO][clickAndReturnMouse]: CLICK
+160509 21:09:53 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:09:53 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:09:55 [INFO][checkPicture]: Image replay.png found
+160509 21:09:55 [INFO][clickAndReturnMouse]: CLICK
+160509 21:09:56 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:09:56 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:09:56 [INFO][checkPicture]: Image start_battle.png found
+160509 21:09:58 [INFO][clickAndReturnMouse]: CLICK
+160509 21:10:01 [INFO][running]: **********************************
+160509 21:10:01 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:10:01 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:17:36 [INFO][checkPicture]: Image victory.png found
+160509 21:17:36 [INFO][clickAndReturnMouse]: CLICK
+160509 21:17:38 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:17:38 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:17:39 [INFO][checkPicture]: Image chest.png found
+160509 21:17:39 [INFO][clickAndReturnMouse]: CLICK
+160509 21:17:41 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:17:41 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:17:43 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:17:43 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:17:44 [INFO][checkPicture]: Image rune_get.png found
+160509 21:17:44 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:17:44 [INFO][clickAndReturnMouse]: CLICK
+160509 21:17:49 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:17:49 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:17:51 [INFO][checkPicture]: Image replay.png found
+160509 21:17:51 [INFO][clickAndReturnMouse]: CLICK
+160509 21:17:54 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:17:54 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:17:54 [INFO][checkPicture]: Image start_battle.png found
+160509 21:17:57 [INFO][clickAndReturnMouse]: CLICK
+160509 21:18:00 [INFO][running]: **********************************
+160509 21:18:00 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:18:00 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:25:00 [INFO][checkPicture]: Image victory.png found
+160509 21:25:00 [INFO][clickAndReturnMouse]: CLICK
+160509 21:25:02 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:25:02 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:25:03 [INFO][checkPicture]: Image chest.png found
+160509 21:25:03 [INFO][clickAndReturnMouse]: CLICK
+160509 21:25:05 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:25:05 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:25:07 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:25:07 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:25:08 [INFO][checkPicture]: Image rune_get.png found
+160509 21:25:08 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:25:08 [INFO][clickAndReturnMouse]: CLICK
+160509 21:25:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:25:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:25:14 [INFO][checkPicture]: Image replay.png found
+160509 21:25:14 [INFO][clickAndReturnMouse]: CLICK
+160509 21:25:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:25:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:25:17 [INFO][checkPicture]: Image start_battle.png found
+160509 21:25:19 [INFO][clickAndReturnMouse]: CLICK
+160509 21:25:22 [INFO][running]: **********************************
+160509 21:25:22 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:25:22 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:32:31 [INFO][checkPicture]: Image victory.png found
+160509 21:32:31 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:35 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:32:35 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:32:36 [INFO][checkPicture]: Image chest.png found
+160509 21:32:36 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:39 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:32:39 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:32:41 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:32:41 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:32:42 [INFO][checkPicture]: Image rune_get.png found
+160509 21:32:42 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:32:42 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:45 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:32:45 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:32:46 [INFO][checkPicture]: Image replay.png found
+160509 21:32:47 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:48 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:32:48 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:32:51 [INFO][checkPicture]: Image not_enough_energy.png found
+160509 21:32:51 [INFO][actionNotEnoughEnergy]: Not enough energy
+160509 21:32:51 [INFO][actionNotEnoughEnergy]: Number of recharges > 0 so we buy new energy
+160509 21:32:51 [INFO][waitForImg]: WAITING for: ['not_enough_energy_yes.png']
+160509 21:32:51 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:32:51 [INFO][checkPicture]: Image not_enough_energy_yes.png found
+160509 21:32:52 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:52 [INFO][waitForImg]: WAITING for: ['not_enough_energy_buy.png']
+160509 21:32:52 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:32:54 [INFO][checkPicture]: Image not_enough_energy_buy.png found
+160509 21:32:54 [INFO][clickAndReturnMouse]: CLICK
+160509 21:32:54 [INFO][waitForImg]: WAITING for: ['not_enough_energy_buy_yes.png']
+160509 21:32:54 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:32:56 [INFO][checkPicture]: Image not_enough_energy_buy_yes.png found
+160509 21:32:57 [INFO][clickAndReturnMouse]: CLICK
+160509 21:33:01 [INFO][waitForImg]: WAITING for: ['not_enough_energy_bought_ok.png']
+160509 21:33:01 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:33:01 [INFO][checkPicture]: Image not_enough_energy_bought_ok.png found
+160509 21:33:01 [INFO][clickAndReturnMouse]: CLICK
+160509 21:33:02 [INFO][waitForImg]: WAITING for: ['not_enough_energy_close.png']
+160509 21:33:02 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:33:02 [INFO][checkPicture]: Image not_enough_energy_close.png found
+160509 21:33:02 [INFO][clickAndReturnMouse]: CLICK
+160509 21:33:05 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:33:05 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:33:07 [INFO][checkPicture]: Image replay.png found
+160509 21:33:07 [INFO][clickAndReturnMouse]: CLICK
+160509 21:33:09 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:33:09 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:33:10 [INFO][checkPicture]: Image start_battle.png found
+160509 21:33:11 [INFO][clickAndReturnMouse]: CLICK
+160509 21:33:13 [INFO][running]: **********************************
+160509 21:33:13 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:33:13 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:40:02 [INFO][checkPicture]: Image victory.png found
+160509 21:40:02 [INFO][clickAndReturnMouse]: CLICK
+160509 21:40:03 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:40:03 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:40:04 [INFO][checkPicture]: Image chest.png found
+160509 21:40:04 [INFO][clickAndReturnMouse]: CLICK
+160509 21:40:07 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:40:07 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:40:08 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:40:08 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:40:09 [INFO][checkPicture]: Image rune_get.png found
+160509 21:40:09 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:40:09 [INFO][clickAndReturnMouse]: CLICK
+160509 21:40:13 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:40:13 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:40:15 [INFO][checkPicture]: Image replay.png found
+160509 21:40:15 [INFO][clickAndReturnMouse]: CLICK
+160509 21:40:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:40:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:40:17 [INFO][checkPicture]: Image start_battle.png found
+160509 21:40:18 [INFO][clickAndReturnMouse]: CLICK
+160509 21:40:20 [INFO][running]: **********************************
+160509 21:40:20 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:40:20 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:47:24 [INFO][checkPicture]: Image victory.png found
+160509 21:47:24 [INFO][clickAndReturnMouse]: CLICK
+160509 21:47:26 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:47:26 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:47:27 [INFO][checkPicture]: Image chest.png found
+160509 21:47:27 [INFO][clickAndReturnMouse]: CLICK
+160509 21:47:31 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:47:31 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:47:32 [INFO][checkPicture]: Image uscroll.png found
+160509 21:47:32 [INFO][actionGiftCAIROSXP]: We got an unknown scroll
+160509 21:47:32 [INFO][checkPicture]: Image ok.png found
+160509 21:47:33 [INFO][clickAndReturnMouse]: CLICK
+160509 21:47:37 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:47:37 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:47:38 [INFO][checkPicture]: Image replay.png found
+160509 21:47:38 [INFO][clickAndReturnMouse]: CLICK
+160509 21:47:39 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:47:39 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:47:40 [INFO][checkPicture]: Image start_battle.png found
+160509 21:47:41 [INFO][clickAndReturnMouse]: CLICK
+160509 21:47:43 [INFO][running]: **********************************
+160509 21:47:43 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:47:43 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:55:34 [INFO][checkPicture]: Image victory.png found
+160509 21:55:34 [INFO][clickAndReturnMouse]: CLICK
+160509 21:55:37 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:55:37 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:55:38 [INFO][checkPicture]: Image chest.png found
+160509 21:55:38 [INFO][clickAndReturnMouse]: CLICK
+160509 21:55:42 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 21:55:42 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 21:55:44 [INFO][checkPicture]: Image rune_sell.png found
+160509 21:55:44 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 21:55:44 [INFO][checkPicture]: Image rune_get.png found
+160509 21:55:44 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 21:55:44 [INFO][clickAndReturnMouse]: CLICK
+160509 21:55:48 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:55:48 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:55:49 [INFO][checkPicture]: Image replay.png found
+160509 21:55:49 [INFO][clickAndReturnMouse]: CLICK
+160509 21:55:52 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:55:52 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 21:55:52 [INFO][checkPicture]: Image start_battle.png found
+160509 21:55:54 [INFO][clickAndReturnMouse]: CLICK
+160509 21:55:57 [INFO][running]: **********************************
+160509 21:55:57 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 21:55:57 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:02:50 [INFO][checkPicture]: Image victory.png found
+160509 22:02:50 [INFO][clickAndReturnMouse]: CLICK
+160509 22:02:52 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:02:52 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:02:53 [INFO][checkPicture]: Image chest.png found
+160509 22:02:53 [INFO][clickAndReturnMouse]: CLICK
+160509 22:02:56 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:02:56 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:02:57 [INFO][checkPicture]: Image rune_sell.png found
+160509 22:02:57 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 22:02:58 [INFO][checkPicture]: Image rune_get.png found
+160509 22:02:58 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 22:02:58 [INFO][clickAndReturnMouse]: CLICK
+160509 22:03:02 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:03:02 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:03:03 [INFO][checkPicture]: Image replay.png found
+160509 22:03:04 [INFO][clickAndReturnMouse]: CLICK
+160509 22:03:07 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:03:07 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:03:07 [INFO][checkPicture]: Image start_battle.png found
+160509 22:03:08 [INFO][clickAndReturnMouse]: CLICK
+160509 22:03:12 [INFO][running]: **********************************
+160509 22:03:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:03:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:09:45 [INFO][checkPicture]: Image victory.png found
+160509 22:09:45 [INFO][clickAndReturnMouse]: CLICK
+160509 22:09:46 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:09:46 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:09:47 [INFO][checkPicture]: Image chest.png found
+160509 22:09:47 [INFO][clickAndReturnMouse]: CLICK
+160509 22:09:50 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:09:50 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:09:51 [INFO][checkPicture]: Image uscroll.png found
+160509 22:09:51 [INFO][actionGiftCAIROSXP]: We got an unknown scroll
+160509 22:09:51 [INFO][checkPicture]: Image ok.png found
+160509 22:09:51 [INFO][clickAndReturnMouse]: CLICK
+160509 22:09:56 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:09:56 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:09:57 [INFO][checkPicture]: Image replay.png found
+160509 22:09:58 [INFO][clickAndReturnMouse]: CLICK
+160509 22:10:00 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:10:00 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:10:00 [INFO][checkPicture]: Image start_battle.png found
+160509 22:10:01 [INFO][clickAndReturnMouse]: CLICK
+160509 22:10:05 [INFO][running]: **********************************
+160509 22:10:05 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:10:05 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:17:26 [INFO][checkPicture]: Image victory.png found
+160509 22:17:26 [INFO][clickAndReturnMouse]: CLICK
+160509 22:17:29 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:17:29 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:17:30 [INFO][checkPicture]: Image chest.png found
+160509 22:17:30 [INFO][clickAndReturnMouse]: CLICK
+160509 22:17:33 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:17:33 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:17:35 [INFO][checkPicture]: Image rune_sell.png found
+160509 22:17:35 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 22:17:36 [INFO][checkPicture]: Image rune_get.png found
+160509 22:17:36 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 22:17:36 [INFO][clickAndReturnMouse]: CLICK
+160509 22:17:40 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:17:40 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:17:42 [INFO][checkPicture]: Image replay.png found
+160509 22:17:42 [INFO][clickAndReturnMouse]: CLICK
+160509 22:17:45 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:17:45 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:17:46 [INFO][checkPicture]: Image start_battle.png found
+160509 22:17:48 [INFO][clickAndReturnMouse]: CLICK
+160509 22:17:50 [INFO][running]: **********************************
+160509 22:17:50 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:17:50 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:25:44 [INFO][checkPicture]: Image victory.png found
+160509 22:25:44 [INFO][clickAndReturnMouse]: CLICK
+160509 22:25:46 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:25:46 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:25:48 [INFO][checkPicture]: Image chest.png found
+160509 22:25:48 [INFO][clickAndReturnMouse]: CLICK
+160509 22:25:50 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:25:50 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:25:52 [INFO][checkPicture]: Image rune_sell.png found
+160509 22:25:52 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 22:25:52 [INFO][checkPicture]: Image rune_get.png found
+160509 22:25:52 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 22:25:53 [INFO][clickAndReturnMouse]: CLICK
+160509 22:25:58 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:25:58 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:25:59 [INFO][checkPicture]: Image replay.png found
+160509 22:25:59 [INFO][clickAndReturnMouse]: CLICK
+160509 22:26:03 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:26:03 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:26:03 [INFO][checkPicture]: Image start_battle.png found
+160509 22:26:05 [INFO][clickAndReturnMouse]: CLICK
+160509 22:26:07 [INFO][running]: **********************************
+160509 22:26:07 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:26:07 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:33:16 [INFO][checkPicture]: Image victory.png found
+160509 22:33:16 [INFO][clickAndReturnMouse]: CLICK
+160509 22:33:19 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:33:19 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:33:21 [INFO][checkPicture]: Image chest.png found
+160509 22:33:21 [INFO][clickAndReturnMouse]: CLICK
+160509 22:33:24 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:33:24 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:33:26 [INFO][checkPicture]: Image rune_sell.png found
+160509 22:33:26 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 22:33:27 [INFO][checkPicture]: Image rune_get.png found
+160509 22:33:27 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 22:33:27 [INFO][clickAndReturnMouse]: CLICK
+160509 22:33:30 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:33:30 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:33:32 [INFO][checkPicture]: Image replay.png found
+160509 22:33:32 [INFO][clickAndReturnMouse]: CLICK
+160509 22:33:34 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:33:34 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:33:34 [INFO][checkPicture]: Image start_battle.png found
+160509 22:33:36 [INFO][clickAndReturnMouse]: CLICK
+160509 22:33:38 [INFO][running]: **********************************
+160509 22:33:38 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:33:38 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:41:12 [INFO][checkPicture]: Image victory.png found
+160509 22:41:12 [INFO][clickAndReturnMouse]: CLICK
+160509 22:41:14 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:41:14 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:41:15 [INFO][checkPicture]: Image chest.png found
+160509 22:41:15 [INFO][clickAndReturnMouse]: CLICK
+160509 22:41:19 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:41:19 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:41:20 [INFO][checkPicture]: Image rune_sell.png found
+160509 22:41:20 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 22:41:21 [INFO][checkPicture]: Image rune_get.png found
+160509 22:41:21 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 22:41:21 [INFO][clickAndReturnMouse]: CLICK
+160509 22:41:26 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:41:26 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:41:27 [INFO][checkPicture]: Image replay.png found
+160509 22:41:28 [INFO][clickAndReturnMouse]: CLICK
+160509 22:41:29 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:41:29 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:41:29 [INFO][checkPicture]: Image start_battle.png found
+160509 22:41:31 [INFO][clickAndReturnMouse]: CLICK
+160509 22:41:34 [INFO][running]: **********************************
+160509 22:41:34 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:41:34 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:48:38 [INFO][checkPicture]: Image victory.png found
+160509 22:48:39 [INFO][clickAndReturnMouse]: CLICK
+160509 22:48:40 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:48:40 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:48:41 [INFO][checkPicture]: Image chest.png found
+160509 22:48:41 [INFO][clickAndReturnMouse]: CLICK
+160509 22:48:44 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:48:44 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:48:45 [INFO][checkPicture]: Image rainbowmon.png found
+160509 22:48:45 [INFO][actionGiftCAIROSXP]: We got a Rainbowmon
+160509 22:48:45 [INFO][checkPicture]: Image ok.png found
+160509 22:48:45 [INFO][clickAndReturnMouse]: CLICK
+160509 22:48:49 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:48:49 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:48:50 [INFO][checkPicture]: Image replay.png found
+160509 22:48:51 [INFO][clickAndReturnMouse]: CLICK
+160509 22:48:52 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:48:52 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:48:52 [INFO][checkPicture]: Image start_battle.png found
+160509 22:48:53 [INFO][clickAndReturnMouse]: CLICK
+160509 22:48:56 [INFO][running]: **********************************
+160509 22:48:56 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:48:56 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:56:28 [INFO][checkPicture]: Image victory.png found
+160509 22:56:28 [INFO][clickAndReturnMouse]: CLICK
+160509 22:56:32 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:56:32 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:56:32 [INFO][checkPicture]: Image chest.png found
+160509 22:56:33 [INFO][clickAndReturnMouse]: CLICK
+160509 22:56:37 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 22:56:37 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 22:56:37 [INFO][checkPicture]: Image uscroll.png found
+160509 22:56:37 [INFO][actionGiftCAIROSXP]: We got an unknown scroll
+160509 22:56:38 [INFO][checkPicture]: Image ok.png found
+160509 22:56:38 [INFO][clickAndReturnMouse]: CLICK
+160509 22:56:41 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:56:41 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:56:42 [INFO][checkPicture]: Image replay.png found
+160509 22:56:42 [INFO][clickAndReturnMouse]: CLICK
+160509 22:56:43 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:56:43 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 22:56:44 [INFO][checkPicture]: Image start_battle.png found
+160509 22:56:46 [INFO][clickAndReturnMouse]: CLICK
+160509 22:56:50 [INFO][running]: **********************************
+160509 22:56:50 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 22:56:50 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:03:41 [INFO][checkPicture]: Image victory.png found
+160509 23:03:41 [INFO][clickAndReturnMouse]: CLICK
+160509 23:03:44 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:03:44 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:03:45 [INFO][checkPicture]: Image chest.png found
+160509 23:03:46 [INFO][clickAndReturnMouse]: CLICK
+160509 23:03:50 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:03:50 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:03:51 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:03:51 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:03:52 [INFO][checkPicture]: Image rune_get.png found
+160509 23:03:52 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:03:52 [INFO][clickAndReturnMouse]: CLICK
+160509 23:03:58 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:03:58 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:03:59 [INFO][checkPicture]: Image replay.png found
+160509 23:03:59 [INFO][clickAndReturnMouse]: CLICK
+160509 23:04:00 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:04:00 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:04:01 [INFO][checkPicture]: Image start_battle.png found
+160509 23:04:02 [INFO][clickAndReturnMouse]: CLICK
+160509 23:04:05 [INFO][running]: **********************************
+160509 23:04:05 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:04:05 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:11:17 [INFO][checkPicture]: Image victory.png found
+160509 23:11:17 [INFO][clickAndReturnMouse]: CLICK
+160509 23:11:18 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:11:18 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:11:19 [INFO][checkPicture]: Image chest.png found
+160509 23:11:19 [INFO][clickAndReturnMouse]: CLICK
+160509 23:11:23 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:11:23 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:11:24 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:11:24 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:11:25 [INFO][checkPicture]: Image rune_get.png found
+160509 23:11:25 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:11:25 [INFO][clickAndReturnMouse]: CLICK
+160509 23:11:29 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:11:29 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:11:31 [INFO][checkPicture]: Image replay.png found
+160509 23:11:31 [INFO][clickAndReturnMouse]: CLICK
+160509 23:11:33 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:11:33 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:11:34 [INFO][checkPicture]: Image start_battle.png found
+160509 23:11:35 [INFO][clickAndReturnMouse]: CLICK
+160509 23:11:37 [INFO][running]: **********************************
+160509 23:11:37 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:11:37 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:18:57 [INFO][checkPicture]: Image victory.png found
+160509 23:18:58 [INFO][clickAndReturnMouse]: CLICK
+160509 23:18:59 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:18:59 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:19:00 [INFO][checkPicture]: Image chest.png found
+160509 23:19:00 [INFO][clickAndReturnMouse]: CLICK
+160509 23:19:03 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:19:03 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:19:05 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:19:05 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:19:06 [INFO][checkPicture]: Image rune_get.png found
+160509 23:19:06 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:19:06 [INFO][clickAndReturnMouse]: CLICK
+160509 23:19:11 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:19:11 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:19:12 [INFO][checkPicture]: Image replay.png found
+160509 23:19:12 [INFO][clickAndReturnMouse]: CLICK
+160509 23:19:15 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:19:15 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:19:15 [INFO][checkPicture]: Image start_battle.png found
+160509 23:19:17 [INFO][clickAndReturnMouse]: CLICK
+160509 23:19:21 [INFO][running]: **********************************
+160509 23:19:21 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:19:21 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:26:43 [INFO][checkPicture]: Image victory.png found
+160509 23:26:43 [INFO][clickAndReturnMouse]: CLICK
+160509 23:26:46 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:26:46 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:26:47 [INFO][checkPicture]: Image chest.png found
+160509 23:26:47 [INFO][clickAndReturnMouse]: CLICK
+160509 23:26:50 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:26:50 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:26:52 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:26:52 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:26:53 [INFO][checkPicture]: Image rune_get.png found
+160509 23:26:53 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:26:53 [INFO][clickAndReturnMouse]: CLICK
+160509 23:26:58 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:26:58 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:27:00 [INFO][checkPicture]: Image replay.png found
+160509 23:27:00 [INFO][clickAndReturnMouse]: CLICK
+160509 23:27:03 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:27:03 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:27:04 [INFO][checkPicture]: Image start_battle.png found
+160509 23:27:06 [INFO][clickAndReturnMouse]: CLICK
+160509 23:27:08 [INFO][running]: **********************************
+160509 23:27:08 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:27:08 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:34:40 [INFO][checkPicture]: Image victory.png found
+160509 23:34:41 [INFO][clickAndReturnMouse]: CLICK
+160509 23:34:42 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:34:42 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:34:43 [INFO][checkPicture]: Image chest.png found
+160509 23:34:43 [INFO][clickAndReturnMouse]: CLICK
+160509 23:34:46 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:34:46 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:34:48 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:34:48 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:34:49 [INFO][checkPicture]: Image rune_get.png found
+160509 23:34:49 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:34:49 [INFO][clickAndReturnMouse]: CLICK
+160509 23:34:52 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:34:52 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:34:54 [INFO][checkPicture]: Image replay.png found
+160509 23:34:54 [INFO][clickAndReturnMouse]: CLICK
+160509 23:34:55 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:34:55 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:34:55 [INFO][checkPicture]: Image start_battle.png found
+160509 23:34:57 [INFO][clickAndReturnMouse]: CLICK
+160509 23:35:00 [INFO][running]: **********************************
+160509 23:35:00 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:35:00 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:21 [INFO][checkPicture]: Image victory.png found
+160509 23:42:21 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:23 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:42:23 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:24 [INFO][checkPicture]: Image chest.png found
+160509 23:42:24 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:28 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:42:28 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:30 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:42:30 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:42:31 [INFO][checkPicture]: Image rune_get.png found
+160509 23:42:31 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:42:31 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:35 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:42:35 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:37 [INFO][checkPicture]: Image replay.png found
+160509 23:42:37 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:38 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:42:38 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:41 [INFO][checkPicture]: Image not_enough_energy.png found
+160509 23:42:41 [INFO][actionNotEnoughEnergy]: Not enough energy
+160509 23:42:41 [INFO][actionNotEnoughEnergy]: Number of recharges > 0 so we buy new energy
+160509 23:42:41 [INFO][waitForImg]: WAITING for: ['not_enough_energy_yes.png']
+160509 23:42:41 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:42 [INFO][checkPicture]: Image not_enough_energy_yes.png found
+160509 23:42:42 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:42 [INFO][waitForImg]: WAITING for: ['not_enough_energy_buy.png']
+160509 23:42:42 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:44 [INFO][checkPicture]: Image not_enough_energy_buy.png found
+160509 23:42:45 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:45 [INFO][waitForImg]: WAITING for: ['not_enough_energy_buy_yes.png']
+160509 23:42:45 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:47 [INFO][checkPicture]: Image not_enough_energy_buy_yes.png found
+160509 23:42:47 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:50 [INFO][waitForImg]: WAITING for: ['not_enough_energy_bought_ok.png']
+160509 23:42:50 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:51 [INFO][checkPicture]: Image not_enough_energy_bought_ok.png found
+160509 23:42:51 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:51 [INFO][waitForImg]: WAITING for: ['not_enough_energy_close.png']
+160509 23:42:51 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:42:51 [INFO][checkPicture]: Image not_enough_energy_close.png found
+160509 23:42:52 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:53 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:42:53 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:54 [INFO][checkPicture]: Image replay.png found
+160509 23:42:55 [INFO][clickAndReturnMouse]: CLICK
+160509 23:42:58 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:42:58 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:42:58 [INFO][checkPicture]: Image start_battle.png found
+160509 23:43:00 [INFO][clickAndReturnMouse]: CLICK
+160509 23:43:02 [INFO][running]: **********************************
+160509 23:43:02 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:43:02 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:50:12 [INFO][checkPicture]: Image victory.png found
+160509 23:50:12 [INFO][clickAndReturnMouse]: CLICK
+160509 23:50:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:50:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:50:17 [INFO][checkPicture]: Image chest.png found
+160509 23:50:17 [INFO][clickAndReturnMouse]: CLICK
+160509 23:50:21 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:50:21 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:50:23 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:50:23 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:50:24 [INFO][checkPicture]: Image rune_get.png found
+160509 23:50:24 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:50:24 [INFO][clickAndReturnMouse]: CLICK
+160509 23:50:29 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:50:29 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:50:30 [INFO][checkPicture]: Image replay.png found
+160509 23:50:31 [INFO][clickAndReturnMouse]: CLICK
+160509 23:50:32 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:50:32 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:50:32 [INFO][checkPicture]: Image start_battle.png found
+160509 23:50:33 [INFO][clickAndReturnMouse]: CLICK
+160509 23:50:35 [INFO][running]: **********************************
+160509 23:50:35 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:50:35 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:57:59 [INFO][checkPicture]: Image victory.png found
+160509 23:57:59 [INFO][clickAndReturnMouse]: CLICK
+160509 23:58:02 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:58:02 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:58:03 [INFO][checkPicture]: Image chest.png found
+160509 23:58:03 [INFO][clickAndReturnMouse]: CLICK
+160509 23:58:07 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160509 23:58:07 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160509 23:58:09 [INFO][checkPicture]: Image rune_sell.png found
+160509 23:58:09 [INFO][actionGiftCAIROSXP]: We got a rune
+160509 23:58:10 [INFO][checkPicture]: Image rune_get.png found
+160509 23:58:10 [INFO][actionGiftCAIROSXP]: Getting the rune
+160509 23:58:10 [INFO][clickAndReturnMouse]: CLICK
+160509 23:58:14 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:58:14 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:58:16 [INFO][checkPicture]: Image replay.png found
+160509 23:58:16 [INFO][clickAndReturnMouse]: CLICK
+160509 23:58:19 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:58:19 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160509 23:58:20 [INFO][checkPicture]: Image start_battle.png found
+160509 23:58:22 [INFO][clickAndReturnMouse]: CLICK
+160509 23:58:24 [INFO][running]: **********************************
+160509 23:58:24 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160509 23:58:24 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:05:55 [INFO][checkPicture]: Image victory.png found
+160510 00:05:55 [INFO][clickAndReturnMouse]: CLICK
+160510 00:05:56 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:05:56 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:05:57 [INFO][checkPicture]: Image chest.png found
+160510 00:05:57 [INFO][clickAndReturnMouse]: CLICK
+160510 00:06:00 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:06:00 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:06:02 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:06:02 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:06:03 [INFO][checkPicture]: Image rune_get.png found
+160510 00:06:03 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:06:03 [INFO][clickAndReturnMouse]: CLICK
+160510 00:06:07 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:06:07 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:06:09 [INFO][checkPicture]: Image replay.png found
+160510 00:06:09 [INFO][clickAndReturnMouse]: CLICK
+160510 00:06:11 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:06:11 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:06:11 [INFO][checkPicture]: Image start_battle.png found
+160510 00:06:14 [INFO][clickAndReturnMouse]: CLICK
+160510 00:06:16 [INFO][running]: **********************************
+160510 00:06:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:06:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:13:00 [INFO][checkPicture]: Image victory.png found
+160510 00:13:00 [INFO][clickAndReturnMouse]: CLICK
+160510 00:13:03 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:13:03 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:13:04 [INFO][checkPicture]: Image chest.png found
+160510 00:13:04 [INFO][clickAndReturnMouse]: CLICK
+160510 00:13:07 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:13:07 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:13:08 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:13:08 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:13:09 [INFO][checkPicture]: Image rune_get.png found
+160510 00:13:09 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:13:09 [INFO][clickAndReturnMouse]: CLICK
+160510 00:13:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:13:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:13:14 [INFO][checkPicture]: Image replay.png found
+160510 00:13:14 [INFO][clickAndReturnMouse]: CLICK
+160510 00:13:16 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:13:16 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:13:17 [INFO][checkPicture]: Image start_battle.png found
+160510 00:13:18 [INFO][clickAndReturnMouse]: CLICK
+160510 00:13:21 [INFO][running]: **********************************
+160510 00:13:21 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:13:21 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:20:53 [INFO][checkPicture]: Image victory.png found
+160510 00:20:53 [INFO][clickAndReturnMouse]: CLICK
+160510 00:20:56 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:20:56 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:20:58 [INFO][checkPicture]: Image chest.png found
+160510 00:20:58 [INFO][clickAndReturnMouse]: CLICK
+160510 00:21:01 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:21:01 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:21:03 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:21:03 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:21:04 [INFO][checkPicture]: Image rune_get.png found
+160510 00:21:04 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:21:04 [INFO][clickAndReturnMouse]: CLICK
+160510 00:21:07 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:21:07 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:21:09 [INFO][checkPicture]: Image replay.png found
+160510 00:21:09 [INFO][clickAndReturnMouse]: CLICK
+160510 00:21:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:21:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:21:12 [INFO][checkPicture]: Image start_battle.png found
+160510 00:21:14 [INFO][clickAndReturnMouse]: CLICK
+160510 00:21:15 [INFO][running]: **********************************
+160510 00:21:15 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:21:15 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:28:21 [INFO][checkPicture]: Image victory.png found
+160510 00:28:21 [INFO][clickAndReturnMouse]: CLICK
+160510 00:28:23 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:28:23 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:28:24 [INFO][checkPicture]: Image chest.png found
+160510 00:28:25 [INFO][clickAndReturnMouse]: CLICK
+160510 00:28:27 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:28:27 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:28:28 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:28:28 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:28:29 [INFO][checkPicture]: Image rune_get.png found
+160510 00:28:29 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:28:29 [INFO][clickAndReturnMouse]: CLICK
+160510 00:28:33 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:28:33 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:28:34 [INFO][checkPicture]: Image replay.png found
+160510 00:28:34 [INFO][clickAndReturnMouse]: CLICK
+160510 00:28:36 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:28:36 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:28:37 [INFO][checkPicture]: Image start_battle.png found
+160510 00:28:39 [INFO][clickAndReturnMouse]: CLICK
+160510 00:28:41 [INFO][running]: **********************************
+160510 00:28:41 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:28:41 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:35:52 [INFO][checkPicture]: Image victory.png found
+160510 00:35:52 [INFO][clickAndReturnMouse]: CLICK
+160510 00:35:54 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:35:54 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:35:55 [INFO][checkPicture]: Image chest.png found
+160510 00:35:56 [INFO][clickAndReturnMouse]: CLICK
+160510 00:35:59 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:35:59 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:36:00 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:36:00 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:36:01 [INFO][checkPicture]: Image rune_get.png found
+160510 00:36:01 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:36:01 [INFO][clickAndReturnMouse]: CLICK
+160510 00:36:05 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:36:05 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:36:07 [INFO][checkPicture]: Image replay.png found
+160510 00:36:07 [INFO][clickAndReturnMouse]: CLICK
+160510 00:36:08 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:36:08 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:36:09 [INFO][checkPicture]: Image start_battle.png found
+160510 00:36:10 [INFO][clickAndReturnMouse]: CLICK
+160510 00:36:12 [INFO][running]: **********************************
+160510 00:36:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:36:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:43:09 [INFO][checkPicture]: Image victory.png found
+160510 00:43:10 [INFO][clickAndReturnMouse]: CLICK
+160510 00:43:12 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:43:12 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:43:13 [INFO][checkPicture]: Image chest.png found
+160510 00:43:13 [INFO][clickAndReturnMouse]: CLICK
+160510 00:43:17 [INFO][waitForImg]: WAITING for: ['sstones.png', 'uscroll.png', 'mscroll.png', 'rainbowmon.png', 'rune_sell.png', 'fodder.png']
+160510 00:43:17 [INFO][waitForImg]: Waiting for maximum 10 seconds
+160510 00:43:19 [INFO][checkPicture]: Image rune_sell.png found
+160510 00:43:19 [INFO][actionGiftCAIROSXP]: We got a rune
+160510 00:43:20 [INFO][checkPicture]: Image rune_get.png found
+160510 00:43:20 [INFO][actionGiftCAIROSXP]: Getting the rune
+160510 00:43:20 [INFO][clickAndReturnMouse]: CLICK
+160510 00:43:23 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:43:23 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:43:24 [INFO][checkPicture]: Image replay.png found
+160510 00:43:25 [INFO][clickAndReturnMouse]: CLICK
+160510 00:43:28 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:43:28 [INFO][waitForImg]: Waiting for maximum 600 seconds
+160510 00:43:28 [INFO][checkPicture]: Image start_battle.png found
+160510 00:43:29 [INFO][clickAndReturnMouse]: CLICK
+160510 00:43:33 [INFO][running]: **********************************
+160510 00:43:33 [INFO][waitForImg]: WAITING for: ['start_battle.png', 'autorun.png', 'chest.png', 'replay.png', 'defeated.png', 'revive.png', 'network_delayed.png', 'not_enough_energy.png', 'victory.png', 'stage_clear.png']
+160510 00:43:33 [INFO][waitForImg]: Waiting for maximum 600 seconds

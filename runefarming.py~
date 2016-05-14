@@ -50,6 +50,7 @@ def initConfigs():
     wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
     wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
     wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
+    wait_times['screen_nextstage_wait'] = int(config.get('wait','nextstage'))
     wait_times['screen_wait_random'] = int(config.get('wait','random'))
     wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
     wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
@@ -104,6 +105,28 @@ def initConfigs():
 
     return tolerance, wait_times, directories, calibration, allConfigs
 
+def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wait_times):
+    numOfTime = 0
+    endLoop = False
+    #Looping
+    while not endLoop:
+        numOfTime += 1
+            
+        if number_of_time > 0 and numOfTime == number_of_time + 1:
+            break
+        
+        waiting_for = ['power_up.png']
+        running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
+        
+        if running_result['res'] and running_result['name'] == 'power_up.png':
+            print ('10x upgrade number: %d/%d' % (numOfTime,int(number_of_time)))
+            functions_opencv.clickAndReturnMouse(running_result)
+            functions_general.randomWait( 2,0 )
+            continue
+        if running_result['res'] and running_result['name'] == 'power_up_finished.png':
+            return
+    return
+
 def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
     #Init
     numOf = {}
@@ -149,7 +172,10 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             print ('Run number: %d' % (numOfTime))
         
         while running:
-            waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+            if stage_type == 'toa':
+                waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+            else:
+                waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
             running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
             #Check first if we had an issue crash or network delayed
@@ -275,6 +301,7 @@ def main():
     parser.add_argument('-c','--calibration', help='This will do the calibration for the fodders', required=False, action='store_true')
     parser.add_argument('-lc','--log_console', help='This will log to console', required=False, action='store_true')
     parser.add_argument('-sm','--swap_monsters', nargs=1, help='This will swap the monsters that are max, you have to enter the number of fodders that are full for consistency test', required=False)
+    parser.add_argument('-ru','--rune_upgrade', nargs=1, help='This will upgrade the runes n times', required=False)
 
     tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
 
@@ -321,6 +348,10 @@ def main():
         
     if args.swap_monsters:
         functions_change_fodders.swapMonsters(tolerance,directories,calibration,int(args.swap_monsters[0]),allConfigs)
+        sys.exit(0)    
+
+    if args.rune_upgrade:
+        rune_upgrade(tolerance,directories,calibration,int(args.rune_upgrade[0]),allConfigs, wait_times)
         sys.exit(0)    
 
     if args.stage_name and args.stage_type:
