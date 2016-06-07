@@ -9,6 +9,22 @@ import sys
 from ConfigParser import SafeConfigParser 
 
 
+def find_min_max(all_squares,axe,minormax):
+    if axe == 'x':
+        coord = 0
+    else:
+        coord = 1
+    best_result = all_squares[0]['points'][0]
+    for square in all_squares:
+        for point in square['points']:
+            if minormax == 'max':
+                if point['center'][coord] > best_result['center'][coord]:
+                    best_result = point
+            else:
+                if point['center'][coord] < best_result['center'][coord]:
+                    best_result = point
+    return best_result
+
 def scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left'):
     for i in xrange(0,numOfTimes):
         if direction == 'left':
@@ -217,7 +233,6 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
     
     if not result['res']:
         logging.debug('Best value found for %s is: %f',templateFile,result['best_val'])
-        logging.debug('Point found is: %s',str(result['points']))
         color_showFound = (0,0,255)
     else:
         logging.info('Image %s found',templateFile)

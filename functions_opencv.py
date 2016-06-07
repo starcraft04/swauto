@@ -9,6 +9,22 @@ import sys
 from ConfigParser import SafeConfigParser 
 
 
+def find_min_max(all_squares,axe,minormax):
+    if axe == 'x':
+        coord = 0
+    else:
+        coord = 1
+    best_result = all_squares[0]['points'][0]
+    for square in all_squares:
+        for point in square['points']:
+            if minormax == 'max':
+                if point['center'][coord] > best_result['center'][coord]:
+                    best_result = point
+            else:
+                if point['center'][coord] < best_result['center'][coord]:
+                    best_result = point
+    return best_result
+
 def scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left'):
     for i in xrange(0,numOfTimes):
         if direction == 'left':
@@ -31,6 +47,15 @@ def clickAndReturnMouse(img):
     logging.info('CLICK')
     pyautogui.moveTo(orig_x, orig_y)
     return
+
+def clickAndReturnMouse_point(point):
+    orig_x,orig_y = pyautogui.position()
+    pyautogui.moveTo(point['center'][0],point['center'][1])
+    pyautogui.click()
+    logging.info('CLICK')
+    pyautogui.moveTo(orig_x, orig_y)
+    return
+
 
 def clickAndReturnMouseCoords(coords):
     orig_x,orig_y = pyautogui.position()

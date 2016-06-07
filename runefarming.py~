@@ -3,6 +3,7 @@ import os
 import argparse
 import logging
 import time
+import pyautogui
 
 import functions_opencv
 import functions_screenshot
@@ -115,7 +116,7 @@ def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wai
         if number_of_time > 0 and numOfTime == number_of_time + 1:
             break
         
-        waiting_for = ['power_up.png']
+        waiting_for = ['power_up.png','power_up_finished.png']
         running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
         
         if running_result['res'] and running_result['name'] == 'power_up.png':
@@ -126,6 +127,48 @@ def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wai
         if running_result['res'] and running_result['name'] == 'power_up_finished.png':
             return
     return
+
+def arena(tolerance,directories,calibration,allConfigs,wait_times):
+    for i in xrange (0,3):
+        print 'scroll:%i' % i
+        screenshot = functions_screenshot.screenshotOpencv()
+        away = functions_opencv.checkPicture(screenshot,'arena_away.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
+        battle = functions_opencv.checkPicture(screenshot,'arena_battle.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
+        win = functions_opencv.checkPicture(screenshot,'arena_win.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
+        all_squares = []
+        if away['res']:
+            all_squares.append(away)
+        if battle['res']:
+            all_squares.append(battle)
+        if win['res']:
+            all_squares.append(win)
+
+        max_point = functions_opencv.find_min_max(all_squares,'y','max')
+        min_point = functions_opencv.find_min_max(all_squares,'y','min')
+        
+        if battle['res']:
+            for b in battle['points']:
+                print b
+                functions_general.randomWait( 2,0 )
+                functions_opencv.clickAndReturnMouse_point(b)
+                
+                running = True
+                while running:
+                    functions_general.randomWait( 2,0 )
+                    waiting_for = ['start_battle.png','arena_place.png','autorun.png','defeated.png','network_delayed.png','victory.png','arena_center.png','arena_center_finished.png']
+                    running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
+
+                    if running_result['name'] == 'arena_place.png':
+                        break
+                    if running_result['res']:
+                        functions_opencv.clickAndReturnMouse(running_result)
+                        
+        orig_x,orig_y = pyautogui.position()                
+        pyautogui.moveTo(max_point['center'][0],max_point['center'][1])
+        pyautogui.dragTo(min_point['center'][0],min_point['center'][1],1)
+        pyautogui.moveTo(orig_x, orig_y)
+        functions_general.randomWait( 3,0 )
+    return         
 
 def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
     #Init
@@ -302,6 +345,7 @@ def main():
     parser.add_argument('-lc','--log_console', help='This will log to console', required=False, action='store_true')
     parser.add_argument('-sm','--swap_monsters', nargs=1, help='This will swap the monsters that are max, you have to enter the number of fodders that are full for consistency test', required=False)
     parser.add_argument('-ru','--rune_upgrade', nargs=1, help='This will upgrade the runes n times', required=False)
+    parser.add_argument('-a','--arena', help='This will automate the arenas', required=False, action='store_true')
 
     tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
 
@@ -352,6 +396,10 @@ def main():
 
     if args.rune_upgrade:
         rune_upgrade(tolerance,directories,calibration,int(args.rune_upgrade[0]),allConfigs, wait_times)
+        sys.exit(0)
+        
+    if args.arena:
+        arena(tolerance,directories,calibration,allConfigs, wait_times)
         sys.exit(0)    
 
     if args.stage_name and args.stage_type:
