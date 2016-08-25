@@ -290,15 +290,14 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
                 return img
 
         max_wait_number -= frequency
-        print max_wait_number
+
         if max_wait_number % 2 == 0:
-            print 'testing'
             screenshot = functions_screenshot.screenshotOpencv()
-            screenshot_cropped = cropToCoords(screenshot, [(100,100),(400,400)])
-            freeze_test = checkPicture(screenshot_cropped,'freeze_test_init.jpg', tolerance ,directories,allConfigs,multiple = False, showFound = False)
+            #screenshot_cropped = cropToCoords(screenshot, [(100,100),(400,400)])
+            freeze_test = checkPicture(screenshot,'freeze_test_init.jpg', tolerance ,directories,allConfigs,multiple = False, showFound = False)
             if freeze_test['res']:
                 clickAndReturnMouse(freeze_test)
-                print 'clicked'
+                print 'Freeze detected'
                 time.sleep(5)
             functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.jpg',directories,(200,200,300,300),allConfigs)
             
