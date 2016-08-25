@@ -216,14 +216,14 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
         
         while running:
             if stage_type == 'toa':
-                waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+                waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','not_enough_energy.png','victory.png','stage_clear.png']
             else:
-                waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+                waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','not_enough_energy.png','victory.png','stage_clear.png']
             running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
             #Check first if we had an issue crash or network delayed
             #NETWORK DELAYED
-            if running_result['res'] and running_result['name'] == 'network_delayed.png':
+            if running_result['res'] and (running_result['name'] == 'network_delayed.png' or running_result['name'] == 'unstable.png' or running_result['name'] == 'network_connection_delayed.png'):
                 functions_actions.actionNetworkDelayed(tolerance, wait_times,directories,allConfigs)
                 continue
             
@@ -273,7 +273,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             elif running_result['res'] and running_result['name'] == 'victory.png':
                 victory_found = True
                 numOf['victory'] += 1
-                printNumOf['victory'] += numOf['victory']
+                printNumOf['victory'] = numOf['victory']
                 numOf['fodder_full'] = functions_actions.actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
@@ -282,7 +282,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             #STAGE CLEAR
             elif running_result['res'] and running_result['name'] == 'stage_clear.png':
                 numOf['victory'] += 1
-                printNumOf['victory'] += numOf['victory']
+                printNumOf['victory'] = numOf['victory']
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
 

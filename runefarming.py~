@@ -154,7 +154,7 @@ def arena(tolerance,directories,calibration,allConfigs,wait_times):
                 
                 running = True
                 while running:
-                    functions_general.randomWait( 2,0 )
+                    functions_general.randomWait( 3,0 )
                     waiting_for = ['start_battle.png','arena_place.png','autorun.png','defeated.png','network_delayed.png','victory.png','arena_center.png','arena_center_finished.png']
                     running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
@@ -216,14 +216,14 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
         
         while running:
             if stage_type == 'toa':
-                waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+                waiting_for = ['start_battle.png','autorun.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','not_enough_energy.png','victory.png','stage_clear.png']
             else:
-                waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_delayed.png','not_enough_energy.png','victory.png','stage_clear.png']
+                waiting_for = ['start_battle.png','autorun.png','chest.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','not_enough_energy.png','victory.png','stage_clear.png']
             running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
             #Check first if we had an issue crash or network delayed
             #NETWORK DELAYED
-            if running_result['res'] and running_result['name'] == 'network_delayed.png':
+            if running_result['res'] and (running_result['name'] == 'network_delayed.png' or running_result['name'] == 'unstable.png' or running_result['name'] == 'network_connection_delayed.png'):
                 functions_actions.actionNetworkDelayed(tolerance, wait_times,directories,allConfigs)
                 continue
             

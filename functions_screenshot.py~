@@ -26,7 +26,7 @@ def takeScreenshotCoords(filename,directories,coords,allConfigs):
 def takeScreenshotCoordsFreeze(filename,directories,coords,allConfigs):
     im = pyautogui.screenshot()
     im2 = im.crop((coords[0],coords[1], coords[2], coords[3]))
-    im2.save(os.path.join(directories['basepicsdir'],filename))
+    im2.save(os.path.join(directories['basepics'],filename))
     
 def main():
     print('Functions')

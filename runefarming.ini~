@@ -12,6 +12,9 @@ revive = 0.96
 4_stars_max = 0.95
 5_stars_max = 0.95
 6_stars_max = 0.95
+arena_center = 0.99
+arena_center_finished = 0.99
+arena_place = 0.99
 
 [wait]
 victory = 1
