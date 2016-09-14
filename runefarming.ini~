@@ -15,6 +15,7 @@ revive = 0.96
 arena_center = 0.99
 arena_center_finished = 0.99
 arena_place = 0.99
+freeze_test_init = 0.98
 
 [wait]
 victory = 1

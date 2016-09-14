@@ -275,6 +275,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
     logging.info('Waiting for maximum %d seconds',max_wait_number * frequency)
     
     functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.jpg',directories,(150,100,800,300),allConfigs)
+    time_orig = time.time()
     
     waiting = True
     while waiting:
@@ -290,6 +291,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
                 return img
 
         max_wait_number -= frequency
+        time_spent = int(time.time() - time_orig)
 
         if max_wait_number % 10 == 0:
             screenshot = functions_screenshot.screenshotOpencv()
