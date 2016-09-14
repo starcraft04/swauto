@@ -161,7 +161,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
     wait_time = wait_times['screen_giftCAIROSXP_wait']
     random_wait = wait_times['screen_wait_random']
     #Searching which gift we got
-    waiting_for = ['sstones.png','uscroll.png','mscroll.png','rainbowmon.png','rune_sell.png','fodder.png']
+    waiting_for = ['sstones.png','uscroll.png','mscroll.png','rainbowmon.png','rune_sell.png','fodder.png','essence.png']
     gift = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
 
     if gift['res'] and gift['name'] == 'rune_sell.png':
@@ -222,7 +222,13 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
         return 'monster'
-        
+    elif gift['res'] and gift['name'] == 'essence.png':
+        logging.info('We got an essence')
+        screenshot = functions_screenshot.screenshotOpencv()
+        ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
+        functions_opencv.clickAndReturnMouse(ok)
+        functions_general.randomWait( wait_time,random_wait )
+        return 'unknown'        
     else:
         logging.info('Waiting exceeded %d',wait_times['max_wait_seconds'])
         logging.info('I don t know what I got, saved as unkown')
