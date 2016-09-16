@@ -1,5 +1,5 @@
 type,name,victory,defeat,runes,mystical_scrolls,unknown_scrolls,rainbowmon,summoning_stones,monster,unknown
-xp,hydeni,6423,0,5125,0,723,120,3,382,92
+xp,hydeni,6751,0,5367,0,749,125,3,409,123
 cairos,dragon,328,15,266,2,40,10,5,0,7
 essence,magicB10,4,0,0,0,0,0,0,0,0
 cairos,dragonB01,1,0,1,0,0,0,0,0,0
@@ -16,7 +16,7 @@ essence,light8,30,0,0,0,0,0,0,0,0
 essence,magic8,4,0,0,0,0,0,0,0,0
 toa,hard,87,2,0,0,0,0,0,0,0
 hoh,harpu_dark,4,0,0,0,0,0,0,0,0
-cairos,gb10,1747,3,1290,16,205,95,31,0,107
+cairos,gb10,1827,3,1361,18,206,98,31,0,119
 hoh,assassin,377,0,0,0,0,0,0,0,0
 cairos,nb10,69,11,49,2,17,1,0,0,0
 cairos,nb09,50,15,37,2,7,2,1,0,1

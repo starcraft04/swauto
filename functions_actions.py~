@@ -161,7 +161,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
     wait_time = wait_times['screen_giftCAIROSXP_wait']
     random_wait = wait_times['screen_wait_random']
     #Searching which gift we got
-    waiting_for = ['sstones.png','uscroll.png','mscroll.png','rainbowmon.png','rune_sell.png','fodder.png','essence.png']
+    waiting_for = ['sstones.png','uscroll.png','mscroll.png','rainbowmon.png','rune_sell.png','fodder.png','symbol01.png','symbol02.png','symbol03.png','symbol04.png','symbol05.png','symbol06.png']
     gift = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
 
     if gift['res'] and gift['name'] == 'rune_sell.png':
@@ -222,8 +222,13 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
         return 'monster'
-    elif gift['res'] and gift['name'] == 'essence.png':
-        logging.info('We got an essence')
+    elif gift['res'] and (gift['name'] == 'symbol01.png' or \
+                          gift['name'] == 'symbol02.png' or \
+                          gift['name'] == 'symbol03.png' or \
+                          gift['name'] == 'symbol04.png' or \
+                          gift['name'] == 'symbol05.png' or \
+                          gift['name'] == 'symbol06.png'):
+        logging.info('We got a symbol')
         screenshot = functions_screenshot.screenshotOpencv()
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
