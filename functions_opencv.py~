@@ -292,7 +292,6 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
 
         max_wait_number -= frequency
         time_spent = int(time.time() - time_orig)
-        print time_spent
 
         if max_wait_number % 10 == 0:
             screenshot = functions_screenshot.screenshotOpencv()

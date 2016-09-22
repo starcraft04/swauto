@@ -262,7 +262,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
 
-                if stage_name == 'toa':
+                if stage_type == 'toa':
                     logging.info('Stage is TOA and defeated so ending here')
                     return
                     

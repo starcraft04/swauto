@@ -86,6 +86,7 @@ def initConfigs():
     calibration['scroll_left_last'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_last'))
     calibration['numoffoddersinlist'] = int(calibrationConfig.get('calibration', 'numoffoddersinlist'))
     calibration['monster_icon_width'] = int(calibrationConfig.get('calibration', 'monster_icon_width'))
+    calibration['error_correction'] = int(config.get('error_correction','monster_scroll'))
     for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
         calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_'+str(i)+'_center'))
 

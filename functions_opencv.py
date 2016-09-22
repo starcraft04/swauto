@@ -29,7 +29,7 @@ def scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left'):
     for i in xrange(0,numOfTimes):
         if direction == 'left':
             pyautogui.moveTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1])
-            pyautogui.dragTo(calibration['scroll_left_first'][0],calibration['scroll_left_first'][1],1)
+            pyautogui.dragTo(calibration['scroll_left_first'][0]+calibration['error_correction'],calibration['scroll_left_first'][1],1)
         else:
             pyautogui.moveTo(calibration['scroll_left_first'][0],calibration['scroll_left_first'][1])
             pyautogui.dragTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1],1)

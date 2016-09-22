@@ -16,6 +16,7 @@ arena_center = 0.99
 arena_center_finished = 0.99
 arena_place = 0.99
 freeze_test_init = 0.98
+setings = 0.99
 
 [wait]
 victory = 1
@@ -54,5 +55,8 @@ savedpics = pics
 [resize]
 rapport = 0.5
 resize_or_not = false
+
+[error_correction]
+monster_scroll = 5
 
 

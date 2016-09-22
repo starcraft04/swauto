@@ -127,35 +127,42 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
     max_num_of_fodders['3_stars'] = int(config.get('max_num_of_fodders_to_upgrade', '3_stars'))
     max_num_of_fodders['2_stars'] = int(config.get('max_num_of_fodders_to_upgrade', '2_stars'))
     max_num_of_fodders['1_stars'] = int(config.get('max_num_of_fodders_to_upgrade', '1_stars'))
+    
+    if fodder_full < 3:
+        monsters = {}
+        #We remove the monsters that are max
+        logging.info('-----------------> Analysing right monster...')   
+        monsters['right'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_right'],allConfigs)
+        logging.info('-----------------> Analysing left monster...')
+        monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_left'],allConfigs)
+        logging.info('-----------------> Analysing bottom monster...')
+        monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_bottom'],allConfigs)
 
-    #We remove the monsters that are max
-    monsters = {}
-    logging.info('-----------------> Analysing right monster...')   
-    monsters['right'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_right'],allConfigs)
-    logging.info('-----------------> Analysing left monster...')
-    monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_left'],allConfigs)
-    logging.info('-----------------> Analysing bottom monster...')
-    monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_bottom'],allConfigs)
 
+        numOfMaxMonsters = 0
+        for name,monster in monsters.iteritems():
+            if monster['max']:
+                numOfMaxMonsters += 1
+        #Now we need to make sure that we have the same amount of max monsters with the victory screen
+        if not (numOfMaxMonsters == fodder_full):
+            print('numOfMaxMonsters: %d and fodder_full: %d' % (numOfMaxMonsters,fodder_full))
+            print('Not the same so stopping here')
+            sys.exit(0)
+        else:
+            logging.info('Consistency checked, max monsters')
+            logging.info('--from victory screen: %d',fodder_full)
+            logging.info('--from this screen: %d',numOfMaxMonsters)
+       
+        #Now we deselect the monsters that are max
+        for name,monster in monsters.iteritems():
+            if monster['max']:
+                functions_opencv.clickAndReturnMouseCoords(monster['center'])
 
-    numOfMaxMonsters = 0
-    for name,monster in monsters.iteritems():
-        if monster['max']:
-            numOfMaxMonsters += 1
-    #Now we need to make sure that we have the same amount of max monsters with the victory screen
-    if not (numOfMaxMonsters == fodder_full):
-        print('numOfMaxMonsters: %d and fodder_full: %d' % (numOfMaxMonsters,fodder_full))
-        print('Not the same so stopping here')
-        sys.exit(0)
     else:
-        logging.info('Consistency checked, max monsters')
-        logging.info('--from victory screen: %d',fodder_full)
-        logging.info('--from this screen: %d',numOfMaxMonsters)
-        
-    #Now we deselect the monsters that are max
-    for name,monster in monsters.iteritems():
-        if monster['max']:
-            functions_opencv.clickAndReturnMouseCoords(monster['center'])
+        numOfMaxMonsters = 3
+        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_right'])
+        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_left'])
+        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_bottom'])
 
     logging.info('Passing already maxed monsters by scrolling %d times',max_num_of_fodders['scroll_init'])
     functions_opencv.scrollMonsterBarRightToLeft(max_num_of_fodders['scroll_init'],calibration_from_start,direction = 'left')
@@ -196,6 +203,10 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
         else:
             functions_opencv.scrollMonsterBarRightToLeft(1,calibration_from_start,direction = 'left')
             max_num_of_fodders['scroll_init'] += 1
+
+    if numOfMaxMonsters > 0:
+        print('numOfMaxMonsters remaining: %d and fodder_full: %d' % (numOfMaxMonsters,fodder_full))
+        sys.exit(0)
 
     config.set('max_num_of_fodders_to_upgrade', 'scroll_init', str(max_num_of_fodders['scroll_init']))
     config.set('max_num_of_fodders_to_upgrade', '6_stars', str(max_num_of_fodders['6_stars']))
