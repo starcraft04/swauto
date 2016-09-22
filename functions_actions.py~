@@ -227,7 +227,9 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
                           gift['name'] == 'symbol03.png' or \
                           gift['name'] == 'symbol04.png' or \
                           gift['name'] == 'symbol05.png' or \
-                          gift['name'] == 'symbol06.png'):
+                          gift['name'] == 'symbol06.png' or \
+                          gift['name'] == 'symbol07.png' or \
+                          gift['name'] == 'symbol08.png'):
         logging.info('We got a symbol')
         screenshot = functions_screenshot.screenshotOpencv()
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)

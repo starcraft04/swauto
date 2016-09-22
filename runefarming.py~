@@ -196,6 +196,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             break
 
         victory_found = False
+        defeated_found = False
         
         numOf['fodder_full'] = 0
         numOf['runes'] = 0
@@ -240,7 +241,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
                     if not room_in_inventory:
                         logging.info('No place left in the inventory to get new runes, stopping here')
                         sys.exit(0)
-                if victory_found:
+                if victory_found or defeated_found:
                     running = False
 
                 
@@ -254,8 +255,9 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
                                    
             #Defeated
             elif running_result['res'] and running_result['name'] == 'defeated.png':
+                defeated_found = True
                 numOf['defeat'] += 1
-                printNumOf['defeat'] += numOf['defeat']
+                printNumOf['defeat'] += 1
                 functions_actions.actionDefeated(running_result, tolerance, wait_times,directories,allConfigs)
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
@@ -273,7 +275,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             elif running_result['res'] and running_result['name'] == 'victory.png':
                 victory_found = True
                 numOf['victory'] += 1
-                printNumOf['victory'] += numOf['victory']
+                printNumOf['victory'] += 1
                 numOf['fodder_full'] = functions_actions.actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
@@ -282,7 +284,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             #STAGE CLEAR
             elif running_result['res'] and running_result['name'] == 'stage_clear.png':
                 numOf['victory'] += 1
-                printNumOf['victory'] += numOf['victory']
+                printNumOf['victory'] += 1
                 #Printing some statistics
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
 
