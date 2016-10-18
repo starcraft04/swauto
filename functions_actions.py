@@ -215,7 +215,8 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         functions_general.randomWait( wait_time,random_wait )
         return 'sstones'
 
-    elif gift['res'] and gift['name'] == 'fodder.png':
+    elif gift['res'] and (gift['name'] == 'fodder.png' or \
+                          gift['name'] == 'fodder2.png'):
         logging.info('We got a fodder monster')
         screenshot = functions_screenshot.screenshotOpencv()
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
@@ -228,7 +229,8 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
                           gift['name'] == 'symbol04.png' or \
                           gift['name'] == 'symbol05.png' or \
                           gift['name'] == 'symbol06.png' or \
-                          gift['name'] == 'symbol07.png'):
+                          gift['name'] == 'symbol07.png' or \
+                          gift['name'] == 'symbol08.png'):
         logging.info('We got a symbol')
         screenshot = functions_screenshot.screenshotOpencv()
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)

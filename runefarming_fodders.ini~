@@ -1,10 +1,10 @@
 [max_num_of_fodders_to_upgrade]
 max_num_of_fodders = 120
-scroll_init = 7
+scroll_init = 3
 6_stars = 0
 5_stars = 0
 4_stars = 0
 3_stars = 0
 2_stars = 0
-1_stars = 18
+1_stars = 0
 
