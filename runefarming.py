@@ -379,6 +379,61 @@ def main():
             os.system('wmctrl -r '+allConfigs['position']['window_name']+' -e 1,'+str(allConfigs['position']['window_pos_x'])+','+str(allConfigs['position']['window_pos_y'])+','+str(allConfigs['position']['window_width'])+',-1')
             #Now we make sure the window is active and in front on the desktop
             os.system('wmctrl -a '+allConfigs['position']['window_name'])
+        if allConfigs['position']['system'] == "windows":
+            import win32gui
+            import re
+            import ctypes
+
+            EnumWindows = ctypes.windll.user32.EnumWindows
+            EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
+            GetWindowText = ctypes.windll.user32.GetWindowTextW
+            GetWindowTextLength = ctypes.windll.user32.GetWindowTextLengthW
+            IsWindowVisible = ctypes.windll.user32.IsWindowVisible
+             
+            titles = []
+            def foreach_window(hwnd, lParam):
+                if IsWindowVisible(hwnd):
+                    length = GetWindowTextLength(hwnd)
+                    buff = ctypes.create_unicode_buffer(length + 1)
+                    GetWindowText(hwnd, buff, length + 1)
+                    titles.append(buff.value)
+                return True
+            EnumWindows(EnumWindowsProc(foreach_window), 0)
+            print("Here are all the windows I found")
+            print(titles)
+            
+            class WindowMgr:
+                """Encapsulates some calls to the winapi for window management"""
+                def __init__ (self):
+                    """Constructor"""
+                    self._handle = None
+
+                def find_window(self, class_name, window_name = None):
+                    """find a window by its class_name"""
+                    self._handle = win32gui.FindWindow(class_name, window_name)
+
+                def _window_enum_callback(self, hwnd, wildcard):
+                    '''Pass to win32gui.EnumWindows() to check all the opened windows'''
+                    if re.match(wildcard, str(win32gui.GetWindowText(hwnd))) != None:
+                        self._handle = hwnd
+
+                def find_window_wildcard(self, wildcard):
+                    self._handle = None
+                    win32gui.EnumWindows(self._window_enum_callback, wildcard)
+
+                def set_foreground(self):
+                    """put the window in the foreground"""
+                    win32gui.SetForegroundWindow(self._handle)
+
+                def move_window(self):
+                    """put the window in the foreground"""
+                    win32gui.MoveWindow(self._handle, 0, 0, 800, 500, True)
+
+            w = WindowMgr()
+            w.find_window_wildcard(".*"+allConfigs['position']['window_name']+".*")
+            w.set_foreground()
+            w.move_window()
+
         time.sleep(1)
 
     if args.test:
