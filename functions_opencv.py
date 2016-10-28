@@ -280,7 +280,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
     waiting = True
     while waiting:
         
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         for image in images:
             img = checkPicture(screenshot,image, tolerance ,directories,allConfigs)
             #Image check
@@ -294,7 +294,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
         time_spent = int(time.time() - time_orig)
 
         if max_wait_number % 10 == 0:
-            screenshot = functions_screenshot.screenshotOpencv()
+            screenshot = functions_screenshot.screenshotOpencv(allConfigs)
             #screenshot_cropped = cropToCoords(screenshot, [(100,100),(900,400)])
             freeze_test = checkPicture(screenshot,'freeze_test_init.jpg', tolerance ,directories,allConfigs,multiple = False, showFound = False)
             if freeze_test['res']:

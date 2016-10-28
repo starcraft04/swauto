@@ -10,7 +10,7 @@ import functions_change_fodders
 def actionNetworkDelayed(tolerance, wait_times,directories,allConfigs):
     wait_time = wait_times['screen_networkDelayed_wait']
     random_wait = wait_times['screen_wait_random']
-    screenshot = functions_screenshot.screenshotOpencv()
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     network_delayed_yes = functions_opencv.checkPicture(screenshot,'network_delayed_yes.png', tolerance ,directories,allConfigs)
     functions_opencv.clickAndReturnMouse(network_delayed_yes)
     #Wait a little bit for the network to stabilise
@@ -27,7 +27,7 @@ def actionAutorun(running_result, tolerance, wait_times,directories,allConfigs):
 def actionRevive(tolerance, wait_times,directories,allConfigs):
     wait_time = wait_times['screen_revive_wait']
     random_wait = wait_times['screen_wait_random']
-    screenshot = functions_screenshot.screenshotOpencv()
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     revive_no = functions_opencv.checkPicture(screenshot,'revive_no.png', tolerance ,directories,allConfigs)
     functions_opencv.clickAndReturnMouse(revive_no)
     functions_general.randomWait( wait_time,random_wait )
@@ -55,7 +55,7 @@ def actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,
     if stage_type == 'xp':
         #Waiting for the max level to appear
         functions_general.randomWait( max_level_wait,random_wait )
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         max_level = functions_opencv.checkPicture(screenshot,'max_level.png', tolerance, directories,allConfigs, multiple = True)
         if max_level['res']:
             fodder_full = len(max_level['points']) - 1
@@ -92,7 +92,7 @@ def actionStartBattle(running_result, tolerance, wait_times,directories,calibrat
 def actionRoomInInventory(tolerance, wait_times,directories,stage_type,allConfigs):
     wait_time = wait_times['room_in_inventory']
     random_wait = wait_times['screen_wait_random']
-    screenshot = functions_screenshot.screenshotOpencv()
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     if stage_type == 'cairos':
         room_in_inventory_no = functions_opencv.checkPicture(screenshot,'room_in_inventory_no.png', tolerance ,directories,allConfigs)
         functions_opencv.clickAndReturnMouse(room_in_inventory_no)
@@ -170,7 +170,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         if (stage_type == 'cairos'):
             crop_square = (gift['points'][0]['center'][0] - 90,gift['points'][0]['center'][1] - 240,gift['points'][0]['center'][0] + 220,gift['points'][0]['center'][1] + 45)
             functions_screenshot.takeScreenshotCoords(time.strftime("%Y%m%d-%H%M%S")+'_rune.png',directories,crop_square,allConfigs)
-            screenshot = functions_screenshot.screenshotOpencv()
+            screenshot = functions_screenshot.screenshotOpencv(allConfigs)
             rune_get = functions_opencv.checkPicture(screenshot,'rune_get.png', tolerance, directories,allConfigs)
             logging.info('Getting the rune')
             functions_opencv.clickAndReturnMouse(rune_get)
@@ -185,7 +185,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
             
     elif gift['res'] and gift['name'] == 'uscroll.png':
         logging.info('We got an unknown scroll')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -193,7 +193,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         
     elif gift['res'] and gift['name'] == 'mscroll.png':
         logging.info('We got a mystical scroll')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -201,7 +201,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         
     elif gift['res'] and gift['name'] == 'rainbowmon.png':
         logging.info('We got a Rainbowmon')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -209,7 +209,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         
     elif gift['res'] and gift['name'] == 'sstones.png':
         logging.info('We got a Summoning stone')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -218,7 +218,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
     elif gift['res'] and (gift['name'] == 'fodder.png' or \
                           gift['name'] == 'fodder2.png'):
         logging.info('We got a fodder monster')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -232,7 +232,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
                           gift['name'] == 'symbol07.png' or \
                           gift['name'] == 'symbol08.png'):
         logging.info('We got a symbol')
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs)
         functions_opencv.clickAndReturnMouse(ok)
         functions_general.randomWait( wait_time,random_wait )
@@ -241,7 +241,7 @@ def actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_t
         logging.info('Waiting exceeded %d',wait_times['max_wait_seconds'])
         logging.info('I don t know what I got, saved as unkown')
         functions_screenshot.takeScreenshot('unknown_'+time.strftime("%Y%m%d-%H%M%S")+'.png',directories,allConfigs)
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         ok = functions_opencv.checkPicture(screenshot,'ok.png', tolerance, directories,allConfigs) 
         if ok['res']:                    
             functions_opencv.clickAndReturnMouse(ok)

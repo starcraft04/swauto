@@ -205,6 +205,7 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
             max_num_of_fodders['scroll_init'] += 1
 
     if numOfMaxMonsters > 0:
+        print('numOfMaxMonsters remaining: %d and fodder_full: %d' % (numOfMaxMonsters,fodder_full))
         sys.exit(0)
 
     config.set('max_num_of_fodders_to_upgrade', 'scroll_init', str(max_num_of_fodders['scroll_init']))

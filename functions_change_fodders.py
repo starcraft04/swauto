@@ -31,7 +31,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
         sys.exit(0)
     #Screenshot then take only the relevant part
     functions_general.randomWait( 1,0 )
-    screenshot = functions_screenshot.screenshotOpencv()
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     crop_info = (calibration['level_top_left'],calibration['level_bottom_right'])
     screenshot_with_info = functions_opencv.cropToCoords(screenshot,crop_info)
 
@@ -75,7 +75,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
     while close_button_still_there:
         functions_opencv.clickAndReturnMouse(close_button)
         functions_general.randomWait( 1,0 )
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         close_button = functions_opencv.checkPicture(screenshot,'close_monster_info.png', tolerance,directories,allConfigs)
         if not close_button['res']:
             close_button_still_there = False
@@ -84,7 +84,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
 
 def initCoordsRelToStartBattle(tolerance,directories,calibration,allConfigs):
     #Find the start_battle
-    screenshot = functions_screenshot.screenshotOpencv()
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     start_battle = functions_opencv.checkPicture(screenshot,'start_battle.png', tolerance,directories,allConfigs)
     if start_battle['res']:
         start_battle_center = (int(start_battle['points'][0]['center'][0]),int(start_battle['points'][0]['center'][1]))
@@ -171,7 +171,7 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
     
     logging.info('Looking for new monsters to be used and scroll maximum %d times',num_of_scroll)
     for s in xrange(0,num_of_scroll):      
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         #Now we check the different monsters in the list to verify if we can take them or not
         #If we have done already one check, we go from the second monster in the list
         if s == 0:

@@ -4,6 +4,7 @@ import argparse
 import logging
 import time
 import pyautogui
+import cv2
 
 import functions_opencv
 import functions_screenshot
@@ -104,6 +105,11 @@ def initConfigs():
     position['window_pos_x'] = int(config.get('position','window_pos_x'))
     position['window_pos_y'] = int(config.get('position','window_pos_y'))
     position['window_width'] = int(config.get('position','window_width'))
+    position['window_height'] = int(config.get('position','window_height'))
+    position['window_end_x'] = int(config.get('position','window_end_x'))
+    position['window_end_y'] = int(config.get('position','window_end_y'))
+    position['pos_resize'] = str(config.get('position','pos_resize'))
+    position['crop_window'] = str(config.get('position','crop_window'))
     
     allConfigs['position'] = position
 
@@ -134,7 +140,7 @@ def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wai
 def arena(tolerance,directories,calibration,allConfigs,wait_times):
     for i in xrange (0,3):
         print 'scroll:%i' % i
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         away = functions_opencv.checkPicture(screenshot,'arena_away.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
         battle = functions_opencv.checkPicture(screenshot,'arena_battle.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
         win = functions_opencv.checkPicture(screenshot,'arena_win.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
@@ -235,7 +241,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             elif running_result['res'] and running_result['name'] == 'start_battle.png':
                 functions_actions.actionStartBattle(running_result, tolerance, wait_times,directories,calibration,numOf['fodder_full'],no_change_fodders,allConfigs)
                 #ROOM IN INVENTORY
-                screenshot = functions_screenshot.screenshotOpencv()
+                screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                 result = functions_opencv.checkPicture(screenshot,'room_in_inventory.png', tolerance, directories,allConfigs)
                 if result['res']:
                     room_in_inventory = functions_actions.actionRoomInInventory(tolerance, wait_times,directories,stage_type,allConfigs)
@@ -339,7 +345,6 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
 def main():
     parser = argparse.ArgumentParser(description='This program will automate the farming')
 
-    parser.add_argument('-p','--position', help='This will tell the program not to reposition the window according to the config file x y and width', required=False, action='store_true')
     parser.add_argument('-nf','--no_change_fodders', help='This will tell the program not to change fodders and stop when all fodders are full', required=False, action='store_true')
     parser.add_argument("-l", "--log", dest="logLevel", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help="Set the logging level")
     parser.add_argument('-r','--recharge', default='0' , help='This is the number of recharges you want', required=False)
@@ -352,6 +357,7 @@ def main():
     parser.add_argument('-sm','--swap_monsters', nargs=1, help='This will swap the monsters that are max, you have to enter the number of fodders that are full for consistency test', required=False)
     parser.add_argument('-ru','--rune_upgrade', nargs=1, help='This will upgrade the runes n times', required=False)
     parser.add_argument('-a','--arena', help='This will automate the arenas', required=False, action='store_true')
+    parser.add_argument('-ws','--workspace', help='This will show you the workspace by showing you a printscreen of the area', required=False, action='store_true')
 
     tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
 
@@ -370,7 +376,7 @@ def main():
                             format=logginFormat)
 
 
-    if args.position:
+    if allConfigs['position']['pos_resize'] == 'yes':
         #Before Starting, make sure to use wmctrl -r Vysor -e 1,0,0,800,-1
         #The window size should be 800 x 450
         #This is to ensure we have always the same siz and that pixels won't be off
@@ -436,8 +442,14 @@ def main():
 
         time.sleep(1)
 
+    if args.workspace:
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+        cv2.imshow('showFound',screenshot)
+        cv2.waitKey(0)
+        sys.exit(0) 
+
     if args.test:
-        screenshot = functions_screenshot.screenshotOpencv()
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
         result = functions_opencv.checkPicture(screenshot,args.test[0], tolerance, directories,allConfigs, multiple = True, showFound = True)
         if not result['res']:
             if args.test[0][:-4] in tolerance:

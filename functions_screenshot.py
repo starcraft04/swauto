@@ -6,12 +6,21 @@ import logging
 import cv2
 import numpy as np
 
-
-def screenshotOpencv():
+def screenshotOpencvFull():
     #This function is taking a screenshot with pyautogui which gets a Pillow image
     #Then it makes sure it is transformed in an opencv format
     img = pyautogui.screenshot()
     open_cv_image = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+    return open_cv_image
+    
+def screenshotOpencv(allConfigs):
+    #This function is taking a screenshot with pyautogui which gets a Pillow image
+    #Then it makes sure it is transformed in an opencv format
+    position = allConfigs['position']
+    im = pyautogui.screenshot()
+    if position['crop_window'] == 'yes':
+        im = im.crop((position['window_pos_x'],position['window_pos_y'], position['window_end_x'], position['window_end_y']))
+    open_cv_image = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
     return open_cv_image
     
 def takeScreenshot(filename,directories,allConfigs):

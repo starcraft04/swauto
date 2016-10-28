@@ -28,7 +28,7 @@ def calibrate(configFile,tolerance,directories,allConfigs):
     while not foundStartBattle:
         print ('Go to a stage with the screen where you have to select monsters')
         raw_input("Press Enter to continue...")
-        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+        screenshot = functions_screenshot.screenshotOpencv()
         start_battle = functions_opencv.checkPicture(screenshot, 'start_battle.png', tolerance,directories,allConfigs)
         if start_battle['res']:
             foundStartBattle = True
