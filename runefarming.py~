@@ -106,8 +106,8 @@ def initConfigs():
     position['window_pos_y'] = int(config.get('position','window_pos_y'))
     position['window_width'] = int(config.get('position','window_width'))
     position['window_height'] = int(config.get('position','window_height'))
-    position['window_start_x'] = int(config.get('position','window_start_x'))
-    position['window_start_y'] = int(config.get('position','window_start_y'))
+    position['window_end_x'] = int(config.get('position','window_end_x'))
+    position['window_end_y'] = int(config.get('position','window_end_y'))
     position['pos_resize'] = str(config.get('position','pos_resize'))
     position['crop_window'] = str(config.get('position','crop_window'))
     
@@ -431,9 +431,9 @@ def main():
                     """put the window in the foreground"""
                     win32gui.SetForegroundWindow(self._handle)
 
-                def move_window(self):
+                def move_window(self,allConfigs):
                     """put the window in the foreground"""
-                    win32gui.MoveWindow(self._handle, 0, 0, 800, 500, True)
+                    win32gui.MoveWindow(self._handle, allConfigs['position']['window_pos_x'], allConfigs['position']['window_pos_y'], allConfigs['position']['window_width'], allConfigs['position']['window_height'], True)
 
             w = WindowMgr()
             w.find_window_wildcard(".*"+allConfigs['position']['window_name']+".*")

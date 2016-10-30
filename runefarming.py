@@ -431,14 +431,14 @@ def main():
                     """put the window in the foreground"""
                     win32gui.SetForegroundWindow(self._handle)
 
-                def move_window(self):
+                def move_window(self,allConfigs):
                     """put the window in the foreground"""
-                    win32gui.MoveWindow(self._handle, 0, 0, 800, 500, True)
+                    win32gui.MoveWindow(self._handle, allConfigs['position']['window_pos_x'], allConfigs['position']['window_pos_y'], allConfigs['position']['window_width'], allConfigs['position']['window_height'], True)
 
             w = WindowMgr()
             w.find_window_wildcard(".*"+allConfigs['position']['window_name']+".*")
             w.set_foreground()
-            w.move_window()
+            w.move_window(allConfigs)
 
         time.sleep(1)
 
