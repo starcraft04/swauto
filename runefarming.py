@@ -8,193 +8,15 @@ import cv2
 
 import functions_opencv
 import functions_screenshot
-import functions_actions
 import functions_general
 import functions_calibration
 import functions_change_fodders
+import rune_upgrade
+import arena
 
-from ConfigParser import SafeConfigParser
-
-def initConfigs():
-    
-    #Loading all configs
-    #We read the config file
-    configFile = 'runefarming.ini'
-    config = SafeConfigParser()
-    config.read(configFile)
-    
-    calibrationFile = 'calibration.ini'
-    calibrationConfig = SafeConfigParser()
-    calibrationConfig.read(calibrationFile)
-    
-    allConfigs = {}
-    
-    allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
-    allConfigs['memoryFiles'] = 'memory.ini'
-    allConfigs['calibrationFiles'] = calibrationFile
- 
-    tolerance = dict(config.items('tolerance'))
-
-    allConfigs['tolerance'] = tolerance
-
-    wait_times = {}
-    wait_times['image_wait'] = int(config.get('wait','image'))
-    wait_times['max_wait_seconds'] = int(config.get('wait','max_wait_seconds'))
-    wait_times['max_run_wait_seconds'] = int(config.get('wait','max_run_wait_seconds'))
-    wait_times['screen_victory_wait'] = int(config.get('wait','victory'))
-    wait_times['screen_networkDelayed_wait'] = int(config.get('wait','networkDelayed'))
-    wait_times['screen_autorun_wait'] = int(config.get('wait','autorun'))
-    wait_times['screen_revive_wait'] = int(config.get('wait','revive'))
-    wait_times['screen_defeated_wait'] = int(config.get('wait','defeated'))
-    wait_times['screen_replay_wait'] = int(config.get('wait','replay'))
-    wait_times['screen_startBattle_wait'] = int(config.get('wait','startBattle'))
-    wait_times['screen_notEnoughEnergy_wait'] = int(config.get('wait','notEnoughEnergy'))
-    wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
-    wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
-    wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
-    wait_times['screen_nextstage_wait'] = int(config.get('wait','nextstage'))
-    wait_times['screen_wait_random'] = int(config.get('wait','random'))
-    wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
-    wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
-    wait_times['room_in_inventory'] = int(config.get('wait','room_in_inventory'))
-    wait_times['long_press_time'] = int(config.get('wait','long_press_time'))
-    wait_times['max_monster_info_screen'] = int(config.get('wait','max_monster_info_screen'))
-    wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
-
-    allConfigs['wait_times'] = wait_times
-	
-    if getattr(sys, 'frozen', False):
-	    # frozen
-	    myPath = os.path.dirname(sys.executable)
-    else:
-        # unfrozen
-        myPath = os.path.dirname(os.path.realpath(__file__))
-	
-    directories = {}
-    directories['basepicsdir'] = os.path.join(myPath,config.get('dir', 'basepics'))
-    directories['debugdir'] = os.path.join(myPath,config.get('dir', 'debug'))
-    directories['picsdir'] = os.path.join(myPath,config.get('dir', 'savedpics'))
-
-    allConfigs['directories'] = directories
-
-    calibration = {}
-    calibration['fodder_right'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_right'))
-    calibration['fodder_bottom'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_bottom'))
-    calibration['fodder_left'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_left'))
-    calibration['level_top_left'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'level_top_left'))
-    calibration['level_bottom_right'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'level_bottom_right'))
-    calibration['scroll_left_first'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_first'))
-    calibration['scroll_left_last'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_last'))
-    calibration['numoffoddersinlist'] = int(calibrationConfig.get('calibration', 'numoffoddersinlist'))
-    calibration['monster_icon_width'] = int(calibrationConfig.get('calibration', 'monster_icon_width'))
-    calibration['error_correction'] = int(config.get('error_correction','monster_scroll'))
-    for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
-        calibration['fodder_'+str(i)+'_center'] = functions_general.fromStringToTuple(calibrationConfig.get('calibration', 'fodder_'+str(i)+'_center'))
-
-    allConfigs['calibration'] = calibration
-
-    resize = {}
-    resize['resize_or_not'] = config.getboolean('resize','resize_or_not')
-    resize['rapport'] = config.getfloat('resize','rapport')
-
-    allConfigs['resize'] = resize
-    
-    position = {}
-    position['system'] = str(config.get('position','system'))
-    position['window_name'] = str(config.get('position','window_name'))
-    position['window_pos_x'] = int(config.get('position','window_pos_x'))
-    position['window_pos_y'] = int(config.get('position','window_pos_y'))
-    position['window_width'] = int(config.get('position','window_width'))
-    position['window_height'] = int(config.get('position','window_height'))
-    position['window_end_x'] = int(config.get('position','window_end_x'))
-    position['window_end_y'] = int(config.get('position','window_end_y'))
-    position['pos_resize'] = str(config.get('position','pos_resize'))
-    position['crop_window'] = str(config.get('position','crop_window'))
-    
-    allConfigs['position'] = position
-
-    return tolerance, wait_times, directories, calibration, allConfigs
-
-def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wait_times):
-    numOfTime = 0
-    endLoop = False
-    #Looping
-    while not endLoop:
-        numOfTime += 1
-            
-        if number_of_time > 0 and numOfTime == number_of_time + 1:
-            break
-        
-        waiting_for = ['power_up.png','power_up_finished.png']
-        running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
-        
-        if running_result['res'] and running_result['name'] == 'power_up.png':
-            print ('10x upgrade number: %d/%d' % (numOfTime,int(number_of_time)))
-            functions_opencv.clickAndReturnMouse(running_result)
-            functions_general.randomWait( 2,0 )
-            continue
-        if running_result['res'] and running_result['name'] == 'power_up_finished.png':
-            return
-    return
-
-def arena(tolerance,directories,calibration,allConfigs,wait_times):
-    for i in xrange (0,3):
-        print 'scroll:%i' % i
-        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
-        away = functions_opencv.checkPicture(screenshot,'arena_away.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
-        battle = functions_opencv.checkPicture(screenshot,'arena_battle.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
-        win = functions_opencv.checkPicture(screenshot,'arena_win.png', tolerance ,directories,allConfigs,multiple = True, showFound = False)
-        all_squares = []
-        if away['res']:
-            all_squares.append(away)
-        if battle['res']:
-            all_squares.append(battle)
-        if win['res']:
-            all_squares.append(win)
-
-        max_point = functions_opencv.find_min_max(all_squares,'y','max')
-        min_point = functions_opencv.find_min_max(all_squares,'y','min')
-        
-        if battle['res']:
-            for b in battle['points']:
-                print b
-                functions_general.randomWait( 2,0 )
-                functions_opencv.clickAndReturnMouse_point(b)
-                
-                running = True
-                while running:
-                    functions_general.randomWait( 3,0 )
-                    waiting_for = ['start_battle.png','arena_place.png','autorun.png','defeated.png','network_delayed.png','victory.png','arena_center.png','arena_center_finished.png']
-                    running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
-
-                    if running_result['name'] == 'arena_place.png':
-                        break
-                    if running_result['res']:
-                        functions_opencv.clickAndReturnMouse(running_result)
-                        
-        orig_x,orig_y = pyautogui.position()                
-        pyautogui.moveTo(max_point['center'][0],max_point['center'][1])
-        pyautogui.dragTo(min_point['center'][0],min_point['center'][1],1)
-        pyautogui.moveTo(orig_x, orig_y)
-        functions_general.randomWait( 3,0 )
-    return         
-
-def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
+def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
     #Init
     numOf = {}
-       
-    printNumOf = {}
-    printNumOf['runes'] = 0
-    printNumOf['uscroll'] = 0
-    printNumOf['mscroll'] = 0
-    printNumOf['rainbowmon'] = 0
-    printNumOf['sstones'] = 0
-    printNumOf['monster'] = 0
-    printNumOf['victory'] = 0
-    printNumOf['defeat'] = 0
-    printNumOf['unknown'] = 0    
-    printNumOf['recharge'] = int(recharge)
-    
     numOfTime = 0
     endLoop = False
     #Looping
@@ -217,6 +39,7 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
         numOf['victory'] = 0
         numOf['defeat'] = 0
         numOf['unknown'] = 0
+        numOf['recharge'] = numOfRecharge
         running = True
         
         if number_of_time > 0:
@@ -225,51 +48,91 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
             print ('Run number: %d' % (numOfTime))
         
         while running:
-            if stage_type == 'toa':
-                waiting_for = ['start_battle.png','autorun.png','not_enough_energy.png','chest.png','next_stage.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','victory.png','stage_clear.png']
-            else:
-                waiting_for = ['start_battle.png','autorun.png','not_enough_energy.png','chest.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','victory.png','stage_clear.png']
+
+            waiting_for = ['start_battle.png','autorun.png','not_enough_energy.png','next_stage.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','victory.png','stage_clear.png']
+
             running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
             #Check first if we had an issue crash or network delayed
             #NETWORK DELAYED
             if running_result['res'] and (running_result['name'] == 'network_delayed.png' or running_result['name'] == 'unstable.png' or running_result['name'] == 'network_connection_delayed.png'):
-                functions_actions.actionNetworkDelayed(tolerance, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_networkDelayed_wait']
+                random_wait = wait_times['screen_wait_random']
+                screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+                network_delayed_yes = functions_opencv.checkPicture(screenshot,'network_delayed_yes.png', tolerance ,directories,allConfigs)
+                functions_opencv.clickAndReturnMouse(network_delayed_yes)
+                #Wait a little bit for the network to stabilise
+                functions_general.randomWait( wait_time,random_wait ) 
                 continue
             
             #START BATTLE
             elif running_result['res'] and running_result['name'] == 'start_battle.png':
-                functions_actions.actionStartBattle(running_result, tolerance, wait_times,directories,calibration,numOf['fodder_full'],no_change_fodders,allConfigs)
+                wait_time = wait_times['screen_startBattle_wait']
+                random_wait = wait_times['screen_wait_random']
+                if noChangeFodders and numOf['fodder_full'] > 0:
+                    logging.info('Number of fodders full: %s - Change fodders: %s',str(numOf['fodder_full']-1),str(not noChangeFodders))
+                    sys.exit(0)
+                if numOf['fodder_full'] > 0:
+                    logging.info('-----------------> Changing %d fodders because they are max',numOf['fodder_full'])
+                    result = functions_change_fodders.swapMonsters(tolerance,directories,calibration,numOf['fodder_full'],allConfigs)
+                functions_general.randomWait( 1,1 )
+                functions_opencv.clickAndReturnMouse(running_result)
+                functions_general.randomWait( wait_time,random_wait )
                 #ROOM IN INVENTORY
                 screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                 result = functions_opencv.checkPicture(screenshot,'room_in_inventory.png', tolerance, directories,allConfigs)
                 if result['res']:
-                    room_in_inventory = functions_actions.actionRoomInInventory(tolerance, wait_times,directories,stage_type,allConfigs)
+                    wait_time = wait_times['room_in_inventory']
+                    random_wait = wait_times['screen_wait_random']
+                    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+                    if stage_type == 'cairos':
+                        room_in_inventory_no = functions_opencv.checkPicture(screenshot,'room_in_inventory_no.png', tolerance ,directories,allConfigs)
+                        functions_opencv.clickAndReturnMouse(room_in_inventory_no)
+                        #Wait a little bit for the network to stabilise
+                        functions_general.randomWait( wait_time,random_wait )
+                        room_in_inventory = False
+                    else:
+                        room_in_inventory_yes = functions_opencv.checkPicture(screenshot,'room_in_inventory_yes.png', tolerance ,directories,allConfigs)
+                        functions_opencv.clickAndReturnMouse(room_in_inventory_yes)
+                        #Wait a little bit for the network to stabilise
+                        functions_general.randomWait( wait_time,random_wait )
+                        room_in_inventory = True
                     #In case we do cairos, we have to stop if we don't have place in the inventory
                     #But if we do another stage, we can ignore this because we sell the rune anywway
                     if not room_in_inventory:
                         logging.info('No place left in the inventory to get new runes, stopping here')
                         sys.exit(0)
+                        
                 if victory_found or defeated_found:
                     running = False
 
                 
             #Revive - coming from Hall of
             elif running_result['res'] and running_result['name'] == 'revive.png':
-                functions_actions.actionRevive(tolerance, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_revive_wait']
+                random_wait = wait_times['screen_wait_random']
+                screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+                revive_no = functions_opencv.checkPicture(screenshot,'revive_no.png', tolerance ,directories,allConfigs)
+                functions_opencv.clickAndReturnMouse(revive_no)
+                functions_general.randomWait( wait_time,random_wait )
 
             #Next stage - coming from ToA
             elif running_result['res'] and running_result['name'] == 'next_stage.png':
-                functions_actions.actionNextStage(running_result,tolerance, wait_times,directories,allConfigs) 
+                wait_time = wait_times['screen_defeated_wait']
+                random_wait = wait_times['screen_wait_random']
+                functions_opencv.clickAndReturnMouse(running_result)
+                functions_general.randomWait( wait_time,random_wait ) 
                                    
             #Defeated
             elif running_result['res'] and running_result['name'] == 'defeated.png':
                 defeated_found = True
                 numOf['defeat'] += 1
-                printNumOf['defeat'] += 1
-                functions_actions.actionDefeated(running_result, tolerance, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_defeated_wait']
+                random_wait = wait_times['screen_wait_random']
+                functions_opencv.clickAndReturnMouse(running_result)
+                functions_general.randomWait( wait_time,random_wait )
                 #Printing some statistics
-                print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
+                print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
 
                 if stage_type == 'toa':
                     logging.info('Stage is TOA and defeated so ending here')
@@ -277,67 +140,99 @@ def running(stage_type,stage_name,no_change_fodders,recharge,number_of_time, tol
                     
             #AUTORUN
             elif running_result['res'] and running_result['name'] == 'autorun.png':
-                functions_actions.actionAutorun(running_result, tolerance, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_autorun_wait']
+                random_wait = wait_times['screen_wait_random']
+                functions_opencv.clickAndReturnMouse(running_result)
+                functions_general.randomWait( wait_time,random_wait )
                 continue
 
-            #VICTORY
-            elif running_result['res'] and running_result['name'] == 'victory.png':
+            #VICTORY or STAGE CLEAR
+            elif running_result['res'] and (running_result['name'] == 'victory.png' or running_result['name'] == 'stage_clear.png'):
                 victory_found = True
                 numOf['victory'] += 1
-                printNumOf['victory'] += 1
-                numOf['fodder_full'] = functions_actions.actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_victory_wait']
+                random_wait = wait_times['screen_wait_random']
+                max_level_wait = wait_times['screen_max_level_wait']
+                fodder_full = 0
+                if stage_type == 'xp':
+                    #Waiting for the max level to appear
+                    functions_general.randomWait( max_level_wait,random_wait )
+                    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+                    max_level = functions_opencv.checkPicture(screenshot,'max_level.png', tolerance, directories,allConfigs, multiple = True)
+                    if max_level['res']:
+                        fodder_full = len(max_level['points']) - 1
+                    logging.info('-----------------> Number of monsters full: %d',fodder_full)
+                functions_opencv.clickAndReturnMouse(running_result)
+                functions_general.randomWait( wait_time,random_wait )
+                numOf['fodder_full'] = fodder_full
                 #Printing some statistics
-                print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
-                continue
+                print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
+                gift = False
+                wait_time = wait_times['screen_giftCAIROSXP_wait']
+                random_wait = wait_times['screen_wait_random']
+                while not gift:
+                    waiting_for_gift = ['rune_get.png','ok.png','chest.png']
+                    after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    if after_victory_result['res'] and after_victory_result['name'] == 'chest.png':
+                        functions_opencv.clickAndReturnMouse(after_victory_result)
+                        print 'clicking the chest'
+                    elif after_victory_result['res'] and after_victory_result['name'] == 'rune_get.png':
+                        if stage_type == 'cairos':
+                            functions_opencv.clickAndReturnMouse(after_victory_result)
+                        elif stage_type == 'xp':
+                            screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+                            rune_sell = functions_opencv.checkPicture(screenshot,'rune_sell.png', tolerance, directories,allConfigs)
+                            functions_opencv.clickAndReturnMouse(rune_sell)
+                        gift = True
+                    elif after_victory_result['res'] and after_victory_result['name'] == 'ok.png':
+                        functions_opencv.clickAndReturnMouse(after_victory_result)
+                        gift = True
 
-            #STAGE CLEAR
-            elif running_result['res'] and running_result['name'] == 'stage_clear.png':
-                victory_found = True
-                numOf['victory'] += 1
-                printNumOf['victory'] += 1
-                #Printing some statistics
-                print ('Victory: %d - Defeat: %d - Recharges left: %d' % (printNumOf['victory'],printNumOf['defeat'],printNumOf['recharge']))
-
-                numOf['fodder_full'] = functions_actions.actionVictory(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
-                continue
-                
-            #CHEST
-            elif running_result['res'] and running_result['name'] == 'chest.png':
-                functions_actions.actionChest(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
-                if stage_type == 'cairos' or stage_type == 'xp':
-                    gift = functions_actions.actionGiftCAIROSXP(running_result, tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
-                    numOf[gift] += 1
-                elif stage_type == 'toa' or stage_type == 'hoh' or stage_type == 'essence':
-                    functions_actions.actionGiftTOAHOH(tolerance, stage_type, stage_name, wait_times,directories,allConfigs)
-
-                #Printing stats and updating the CSV
-                printNumOf['runes'] += numOf['runes']
-                printNumOf['uscroll'] += numOf['uscroll']
-                printNumOf['mscroll'] += numOf['mscroll']
-                printNumOf['rainbowmon'] += numOf['rainbowmon']
-                printNumOf['sstones'] += numOf['sstones']
-                printNumOf['monster'] += numOf['monster']
-                printNumOf['unknown'] += numOf['unknown'] 
-                
-                if stage_type == 'cairos' or stage_type == 'xp':
-                    print ('Runes: %d - Mystical scroll: %d - Unknown scroll: %d - Rainbowmon: %d - S Stones: %d - Monster: %d - Unknown: %d' % (printNumOf['runes'],printNumOf['mscroll'],printNumOf['uscroll'],printNumOf['rainbowmon'],printNumOf['sstones'],printNumOf['monster'],printNumOf['unknown']))
-
-                print ('')
-
-                #Updating CSV                                    
-                functions_general.updateCsv('runefarming_stats.csv', stage_type, stage_name, numOf)
+                    functions_general.randomWait( wait_time,random_wait )
                 continue
 
             #REPLAY
             elif running_result['res'] and running_result['name'] == 'replay.png':
                 if int(numOfTime) == int(number_of_time):
                     break
-                functions_actions.actionReplay(running_result, tolerance, numOf['fodder_full'],no_change_fodders, wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_replay_wait']
+                random_wait = wait_times['screen_wait_random']
+                if noChangeFodders and numOf['fodder_full'] > 0:
+                    logging.info('Number of fodders full: %s - Change fodders: %s',str(numOf['fodder_full']),str(not noChangeFodders))
+                    sys.exit(0)
+                else:
+                    functions_opencv.clickAndReturnMouse(running_result)
+                    functions_general.randomWait( wait_time,random_wait )
                 continue
                 
             #NOT ENOUGH ENERGY
             elif running_result['res'] and running_result['name'] == 'not_enough_energy.png':
-                printNumOf['recharge'] = functions_actions.actionNotEnoughEnergy(tolerance, printNumOf['recharge'], wait_times,directories,allConfigs)
+                wait_time = wait_times['screen_notEnoughEnergy_wait']
+                random_wait = wait_times['screen_wait_random']
+                not_enough_energy_buy_yes_time = wait_times['screen_not_enough_energy_buy_yes_wait']
+                logging.info('Not enough energy')
+                if (numOfRecharge > 0):
+                    logging.info('Number of recharges > 0 so we buy new energy')
+                    numOfRecharge -= 1
+                    not_enough_energy_yes = functions_opencv.waitForImg(['not_enough_energy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    functions_opencv.clickAndReturnMouse(not_enough_energy_yes)
+                    not_enough_energy_buy = functions_opencv.waitForImg(['not_enough_energy_buy.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    functions_opencv.clickAndReturnMouse(not_enough_energy_buy)
+                    not_enough_energy_buy_yes = functions_opencv.waitForImg(['not_enough_energy_buy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    functions_opencv.clickAndReturnMouse(not_enough_energy_buy_yes)
+                    #We need to wait a little bit because the next screen can come up pretty slowly
+                    functions_general.randomWait( not_enough_energy_buy_yes_time,random_wait )
+                    not_enough_energy_bought_ok = functions_opencv.waitForImg(['not_enough_energy_bought_ok.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    functions_opencv.clickAndReturnMouse(not_enough_energy_bought_ok)
+                    not_enough_energy_close = functions_opencv.waitForImg(['not_enough_energy_close.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    functions_opencv.clickAndReturnMouse(not_enough_energy_close)
+                else:
+                    logging.info('No energy left and no recharges left so leaving the loop')
+                    sys.exit(0)
+        
+                functions_general.randomWait( wait_time,random_wait )    
+
+                numOf['recharge'] = numOfRecharge
                 continue
 
             logging.info('**********************************')
@@ -359,7 +254,7 @@ def main():
     parser.add_argument('-a','--arena', help='This will automate the arenas', required=False, action='store_true')
     parser.add_argument('-ws','--workspace', help='This will show you the workspace by showing you a printscreen of the area', required=False, action='store_true')
 
-    tolerance, wait_times, directories, calibration, allConfigs = initConfigs()
+    tolerance, wait_times, directories, calibration, allConfigs = functions_general.initConfigs()
 
     args = parser.parse_args()
     logginFormat = '%(asctime)s [%(levelname)s][%(funcName)s]: %(message)s'
@@ -469,15 +364,15 @@ def main():
         sys.exit(0)    
 
     if args.rune_upgrade:
-        rune_upgrade(tolerance,directories,calibration,int(args.rune_upgrade[0]),allConfigs, wait_times)
+        rune_upgrade.rune_upgrade(tolerance,directories,calibration,int(args.rune_upgrade[0]),allConfigs, wait_times)
         sys.exit(0)
         
     if args.arena:
-        arena(tolerance,directories,calibration,allConfigs, wait_times)
+        arena.arena(tolerance,directories,calibration,allConfigs, wait_times)
         sys.exit(0)    
 
     if args.stage_name and args.stage_type:
-        running(args.stage_type,args.stage_name,args.no_change_fodders,args.recharge,int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
+        running(args.stage_type,args.stage_name,args.no_change_fodders,int(args.recharge),int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
     else:
         print ('You must select a stage type and a stage name, help for more info')
 
