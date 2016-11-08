@@ -19,7 +19,7 @@ def screenshotOpencv(allConfigs):
     position = allConfigs['position']
     im = pyautogui.screenshot()
     if position['crop_window'] == 'yes':
-        im = im.crop((0,0, position['window_end_x'], position['window_end_y']))
+        im = im.crop((position['window_start_x'],position['window_start_y'], position['window_end_x'], position['window_end_y']))
     open_cv_image = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
     return open_cv_image
     

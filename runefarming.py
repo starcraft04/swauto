@@ -17,35 +17,27 @@ import arena
 def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
     #Init
     numOf = {}
-    numOfTime = 0
+    numOf['victory'] = 0
+    numOf['defeat'] = 0
+    numOf['recharge'] = numOfRecharge
+    numOf['Time'] = 0
     endLoop = False
     #Looping
     while not endLoop:
-        numOfTime += 1
-            
-        if number_of_time > 0 and numOfTime == number_of_time + 1:
+        numOf['Time'] += 1
+        numOf['fodder_full'] = 0
+        
+        if number_of_time > 0 and numOf['Time'] == number_of_time + 1:
             break
 
         victory_found = False
         defeated_found = False
-        
-        numOf['fodder_full'] = 0
-        numOf['runes'] = 0
-        numOf['uscroll'] = 0
-        numOf['mscroll'] = 0
-        numOf['rainbowmon'] = 0
-        numOf['sstones'] = 0
-        numOf['monster'] = 0
-        numOf['victory'] = 0
-        numOf['defeat'] = 0
-        numOf['unknown'] = 0
-        numOf['recharge'] = numOfRecharge
         running = True
         
         if number_of_time > 0:
-            print ('Run number: %d/%d' % (numOfTime,int(number_of_time)))
+            print ('Run number: %d/%d' % (numOf['Time'],int(number_of_time)))
         else:
-            print ('Run number: %d' % (numOfTime))
+            print ('Run number: %d' % (numOf['Time']))
         
         while running:
 
@@ -75,6 +67,7 @@ def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, 
                 if numOf['fodder_full'] > 0:
                     logging.info('-----------------> Changing %d fodders because they are max',numOf['fodder_full'])
                     result = functions_change_fodders.swapMonsters(tolerance,directories,calibration,numOf['fodder_full'],allConfigs)
+
                 functions_general.randomWait( 1,1 )
                 functions_opencv.clickAndReturnMouse(running_result)
                 functions_general.randomWait( wait_time,random_wait )
@@ -175,7 +168,6 @@ def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, 
                     after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     if after_victory_result['res'] and after_victory_result['name'] == 'chest.png':
                         functions_opencv.clickAndReturnMouse(after_victory_result)
-                        print 'clicking the chest'
                     elif after_victory_result['res'] and after_victory_result['name'] == 'rune_get.png':
                         if stage_type == 'cairos':
                             functions_opencv.clickAndReturnMouse(after_victory_result)
@@ -193,7 +185,7 @@ def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, 
 
             #REPLAY
             elif running_result['res'] and running_result['name'] == 'replay.png':
-                if int(numOfTime) == int(number_of_time):
+                if int(numOf['Time']) == int(number_of_time):
                     break
                 wait_time = wait_times['screen_replay_wait']
                 random_wait = wait_times['screen_wait_random']
@@ -211,28 +203,30 @@ def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, 
                 random_wait = wait_times['screen_wait_random']
                 not_enough_energy_buy_yes_time = wait_times['screen_not_enough_energy_buy_yes_wait']
                 logging.info('Not enough energy')
-                if (numOfRecharge > 0):
+                if (numOf['recharge'] > 0):
                     logging.info('Number of recharges > 0 so we buy new energy')
-                    numOfRecharge -= 1
+                    numOf['recharge'] -= 1
                     not_enough_energy_yes = functions_opencv.waitForImg(['not_enough_energy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_yes)
+                    functions_general.randomWait( wait_time,random_wait )
                     not_enough_energy_buy = functions_opencv.waitForImg(['not_enough_energy_buy.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_buy)
+                    functions_general.randomWait( wait_time,random_wait )
                     not_enough_energy_buy_yes = functions_opencv.waitForImg(['not_enough_energy_buy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_buy_yes)
                     #We need to wait a little bit because the next screen can come up pretty slowly
                     functions_general.randomWait( not_enough_energy_buy_yes_time,random_wait )
                     not_enough_energy_bought_ok = functions_opencv.waitForImg(['not_enough_energy_bought_ok.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_bought_ok)
+                    functions_general.randomWait( wait_time,random_wait )
                     not_enough_energy_close = functions_opencv.waitForImg(['not_enough_energy_close.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_close)
+                    functions_general.randomWait( wait_time,random_wait )
                 else:
                     logging.info('No energy left and no recharges left so leaving the loop')
                     sys.exit(0)
         
                 functions_general.randomWait( wait_time,random_wait )    
-
-                numOf['recharge'] = numOfRecharge
                 continue
 
             logging.info('**********************************')
@@ -276,11 +270,11 @@ def main():
         #The window size should be 800 x 450
         #This is to ensure we have always the same siz and that pixels won't be off
         #We read the config file
-        if allConfigs['position']['system'] == "linux":
-            os.system('wmctrl -r '+allConfigs['position']['window_name']+' -e 1,'+str(allConfigs['position']['window_pos_x'])+','+str(allConfigs['position']['window_pos_y'])+','+str(allConfigs['position']['window_width'])+',-1')
+        if allConfigs['position']['system'] == 'linux':
+            os.system('wmctrl -r '+allConfigs['position']['window_name_1']+' -e 1,'+str(allConfigs['position']['window_pos_x_1'])+','+str(allConfigs['position']['window_pos_y_1'])+','+str(allConfigs['position']['window_width_1'])+',-1')
             #Now we make sure the window is active and in front on the desktop
             os.system('wmctrl -a '+allConfigs['position']['window_name'])
-        if allConfigs['position']['system'] == "windows":
+        if allConfigs['position']['system'] == 'windows':
             import win32gui
             import re
             import ctypes
@@ -300,8 +294,9 @@ def main():
                     titles.append(buff.value)
                 return True
             EnumWindows(EnumWindowsProc(foreach_window), 0)
-            print("Here are all the windows I found")
-            print(titles)
+            if args.workspace:
+                print("Here are all the windows I found")
+                print(titles)
             
             class WindowMgr:
                 """Encapsulates some calls to the winapi for window management"""
@@ -326,14 +321,15 @@ def main():
                     """put the window in the foreground"""
                     win32gui.SetForegroundWindow(self._handle)
 
-                def move_window(self,allConfigs):
+                def move_window(self,allConfigs,i):
                     """put the window in the foreground"""
-                    win32gui.MoveWindow(self._handle, allConfigs['position']['window_pos_x'], allConfigs['position']['window_pos_y'], allConfigs['position']['window_width'], allConfigs['position']['window_height'], True)
+                    win32gui.MoveWindow(self._handle, allConfigs['position']['window_pos_x_'+i], allConfigs['position']['window_pos_y_'+i], allConfigs['position']['window_width_'+i], allConfigs['position']['window_height_'+i], True)
 
+            i = allConfigs['position']['window']
             w = WindowMgr()
-            w.find_window_wildcard(".*"+allConfigs['position']['window_name']+".*")
+            w.find_window_wildcard(".*"+allConfigs['position']['window_name_'+i]+".*")
             w.set_foreground()
-            w.move_window(allConfigs)
+            w.move_window(allConfigs,i)
 
         time.sleep(1)
 
