@@ -14,7 +14,7 @@ import functions_change_fodders
 import rune_upgrade
 import arena
 
-def running(stage_type,stage_name,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
+def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
     #Init
     numOf = {}
     numOf['victory'] = 0
@@ -239,7 +239,6 @@ def main():
     parser.add_argument('-r','--recharge', default='0' , help='This is the number of recharges you want', required=False)
     parser.add_argument('-n','--number_of_time', default='0' , help='This is the number of times you want the stage to be run', required=False)
     parser.add_argument('-t','--stage_type', choices=['cairos','essence','xp', 'toa','hoh'], help='This is the stage that you want to automate.', required=False)
-    parser.add_argument('-s','--stage_name', help='This is the stage that you want to automate. Can be any name and is there more for logging purpose', required=False)
     parser.add_argument('-tst','--test', nargs=1, help='Just give the name of the picture to be tested through the screenshot', required=False)
     parser.add_argument('-c','--calibration', help='This will do the calibration for the fodders', required=False, action='store_true')
     parser.add_argument('-lc','--log_console', help='This will log to console', required=False, action='store_true')
@@ -367,8 +366,8 @@ def main():
         arena.arena(tolerance,directories,calibration,allConfigs, wait_times)
         sys.exit(0)    
 
-    if args.stage_name and args.stage_type:
-        running(args.stage_type,args.stage_name,args.no_change_fodders,int(args.recharge),int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
+    if args.stage_type:
+        running(args.stage_type,args.no_change_fodders,int(args.recharge),int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
     else:
         print ('You must select a stage type and a stage name, help for more info')
 
