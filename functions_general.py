@@ -38,11 +38,8 @@ def initConfigs():
             # There was an error on creation, so make sure we know about it
             raise
     #Now we check the log file exists
-    fn = os.path.join('debug','runefarming.log')
-    try:
-        file = open(fn, 'r')
-    except IOError:
-        file = open(fn, 'w')
+    logFile = os.path.join('debug','runefarming.log')
+    file = open(logFile, 'w')
     
     #Loading all configs
     #We read the config file
@@ -58,6 +55,7 @@ def initConfigs():
     
     allConfigs['runefarmingFoddersFiles'] = os.path.join('config','runefarming_fodders.ini')
     allConfigs['calibrationFiles'] = calibrationFile
+    allConfigs['logFiles'] = logFile
  
     tolerance = dict(config.items('tolerance'))
 

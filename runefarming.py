@@ -258,7 +258,7 @@ def main():
                             datefmt='%Y/%m/%d %H:%M:%S',
                             format=logginFormat)
         else:
-            logging.basicConfig(filename='runefarming.log',
+            logging.basicConfig(filename=allConfigs['logFiles'],
                             level=args.logLevel,
                             datefmt='%y%m%d %H:%M:%S',
                             format=logginFormat)
