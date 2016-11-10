@@ -1,7 +1,7 @@
 import sys
 from cx_Freeze import setup, Executable
 
-includefiles = ['basepics\\','debug\\','pics\\','calibration.ini','runefarming.ini','runefarming.log','runefarming_fodders.ini']
+includefiles = ['basepics\\','config\\']
 includes = []
 excludes = ['Tkinter','Tk','Tcl']
 packages = []

@@ -19,20 +19,44 @@ def fromStringToTuple(string):
 
 def initConfigs():
     
+    #Getting the path to the program
+    if getattr(sys, 'frozen', False):
+	    # frozen
+	    myPath = os.path.dirname(sys.executable)
+    else:
+        # unfrozen
+        myPath = os.path.dirname(os.path.realpath(__file__))
+        
+    #Let's check we have the empty directory debug in case we need it
+    try:
+        os.makedirs('debug')
+    except OSError:
+        if os.path.exists('debug'):
+            # We are nearly safe
+            pass
+        else:
+            # There was an error on creation, so make sure we know about it
+            raise
+    #Now we check the log file exists
+    fn = os.path.join('debug','runefarming.log')
+    try:
+        file = open(fn, 'r')
+    except IOError:
+        file = open(fn, 'w')
+    
     #Loading all configs
     #We read the config file
-    configFile = 'runefarming.ini'
+    configFile = os.path.join('config','runefarming.ini')
     config = SafeConfigParser()
     config.read(configFile)
     
-    calibrationFile = 'calibration.ini'
+    calibrationFile = os.path.join('config','calibration.ini')
     calibrationConfig = SafeConfigParser()
     calibrationConfig.read(calibrationFile)
     
     allConfigs = {}
     
-    allConfigs['runefarmingFoddersFiles'] = 'runefarming_fodders.ini'
-    allConfigs['memoryFiles'] = 'memory.ini'
+    allConfigs['runefarmingFoddersFiles'] = os.path.join('config','runefarming_fodders.ini')
     allConfigs['calibrationFiles'] = calibrationFile
  
     tolerance = dict(config.items('tolerance'))
@@ -64,13 +88,6 @@ def initConfigs():
     wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
 
     allConfigs['wait_times'] = wait_times
-	
-    if getattr(sys, 'frozen', False):
-	    # frozen
-	    myPath = os.path.dirname(sys.executable)
-    else:
-        # unfrozen
-        myPath = os.path.dirname(os.path.realpath(__file__))
 	
     directories = {}
     directories['basepicsdir'] = os.path.join(myPath,config.get('dir', 'basepics'))
