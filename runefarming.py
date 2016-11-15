@@ -9,12 +9,11 @@ import cv2
 import functions_opencv
 import functions_screenshot
 import functions_general
-import functions_calibration
 import functions_change_fodders
 import rune_upgrade
 import arena
 
-def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,calibration,allConfigs):
+def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, wait_times, directories,allConfigs):
     #Init
     numOf = {}
     numOf['victory'] = 0
@@ -66,7 +65,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                     sys.exit(0)
                 if numOf['fodder_full'] > 0:
                     logging.info('-----------------> Changing %d fodders because they are max',numOf['fodder_full'])
-                    result = functions_change_fodders.swapMonsters(tolerance,directories,calibration,numOf['fodder_full'],allConfigs)
+                    result = functions_change_fodders.swapMonsters(tolerance,directories,numOf['fodder_full'],allConfigs)
 
                 functions_general.randomWait( 1,1 )
                 functions_opencv.clickAndReturnMouse(running_result)
@@ -242,14 +241,13 @@ def main():
     parser.add_argument('-n','--number_of_time', default='0' , help='This is the number of times you want the stage to be run', required=False)
     parser.add_argument('-t','--stage_type', choices=['cairos','essence','xp', 'toa','hoh'], help='This is the stage that you want to automate.', required=False)
     parser.add_argument('-tst','--test', nargs=1, help='Just give the name of the picture to be tested through the screenshot', required=False)
-    parser.add_argument('-c','--calibration', help='This will do the calibration for the fodders', required=False, action='store_true')
     parser.add_argument('-lc','--log_console', help='This will log to console', required=False, action='store_true')
     parser.add_argument('-sm','--swap_monsters', nargs=1, help='This will swap the monsters that are max, you have to enter the number of fodders that are full for consistency test', required=False)
     parser.add_argument('-ru','--rune_upgrade', nargs=1, help='This will upgrade the runes n times', required=False)
     parser.add_argument('-a','--arena', help='This will automate the arenas', required=False, action='store_true')
     parser.add_argument('-ws','--workspace', help='This will show you the workspace by showing you a printscreen of the area', required=False, action='store_true')
 
-    tolerance, wait_times, directories, calibration, allConfigs = functions_general.initConfigs()
+    tolerance, wait_times, directories, allConfigs = functions_general.initConfigs()
 
     args = parser.parse_args()
     logginFormat = '%(asctime)s [%(levelname)s][%(funcName)s]: %(message)s'
@@ -351,25 +349,21 @@ def main():
             print ('Tolerance for file %s is: %f' % (args.test[0],tolerance))
             print ('Best tolerance found is: %f' % (result['best_val']))
         sys.exit(0)
-
-    if args.calibration:
-        functions_calibration.calibrate(allConfigs['calibrationFiles'],tolerance,directories,allConfigs)
-        sys.exit(0)
         
     if args.swap_monsters:
-        functions_change_fodders.swapMonsters(tolerance,directories,calibration,int(args.swap_monsters[0]),allConfigs)
+        functions_change_fodders.swapMonsters(tolerance,directories,int(args.swap_monsters[0]),allConfigs)
         sys.exit(0)    
 
     if args.rune_upgrade:
-        rune_upgrade.rune_upgrade(tolerance,directories,calibration,int(args.rune_upgrade[0]),allConfigs, wait_times)
+        rune_upgrade.rune_upgrade(tolerance,directories,int(args.rune_upgrade[0]),allConfigs, wait_times)
         sys.exit(0)
         
     if args.arena:
-        arena.arena(tolerance,directories,calibration,allConfigs, wait_times)
+        arena.arena(tolerance,directories,allConfigs, wait_times)
         sys.exit(0)    
 
     if args.stage_type:
-        running(args.stage_type,args.no_change_fodders,int(args.recharge),int(args.number_of_time),tolerance, wait_times, directories,calibration,allConfigs)
+        running(args.stage_type,args.no_change_fodders,int(args.recharge),int(args.number_of_time),tolerance, wait_times, directories,allConfigs)
     else:
         print ('You must select a stage type and a stage name, help for more info')
 

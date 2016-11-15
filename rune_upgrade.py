@@ -8,7 +8,7 @@ import functions_opencv
 import functions_general
 
 
-def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wait_times):
+def rune_upgrade(tolerance,directories,number_of_time,allConfigs,wait_times):
     numOfTime = 0
     endLoop = False
     #Looping

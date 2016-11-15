@@ -14,34 +14,43 @@ def find_min_max(all_squares,axe,minormax):
         coord = 0
     else:
         coord = 1
-    best_result = all_squares[0]['points'][0]
-    for square in all_squares:
-        for point in square['points']:
-            if minormax == 'max':
-                if point['center'][coord] > best_result['center'][coord]:
-                    best_result = point
-            else:
-                if point['center'][coord] < best_result['center'][coord]:
-                    best_result = point
+    best_result = {}
+    best_result['res'] = all_squares['res']
+    best_result['points'] = []
+    best_result['points'].append(all_squares['points'][0])
+    best_result['name'] = all_squares['name']
+    
+    for point in all_squares['points']:
+        if minormax == 'max':
+            if point['center'][coord] > best_result['points'][0]['center'][coord]:
+                best_result['points'][0] = point
+        else:
+            if point['center'][coord] < best_result['points'][0]['center'][coord]:
+                best_result['points'][0] = point
+
     return best_result
 
-def scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left'):
+def scrollMonsterBarRightToLeft(numOfTimes,allConfigs,direction = 'left'):
     for i in xrange(0,numOfTimes):
+        screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+        monster_select = checkPicture(screenshot,'monster_select.png', allConfigs['tolerance'] ,allConfigs['directories'],allConfigs, multiple = True)
+
+        most_left_monster = find_min_max(monster_select,'x','min')
+        most_right_monster = find_min_max(monster_select,'x','max')
+
         if direction == 'left':
-            pyautogui.moveTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1])
+            pyautogui.moveTo(most_right_monster['points'][0]['top_left'][0],most_right_monster['points'][0]['bottom_right'][1])
             pyautogui.mouseDown()
-            pyautogui.moveTo(calibration['scroll_left_first'][0]+calibration['error_correction'],calibration['scroll_left_first'][1],6)
+            pyautogui.moveTo(most_left_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_left_monster['points'][0]['bottom_right'][1],6)
             pyautogui.mouseUp()
             functions_general.randomWait( 1,0 )
         else:
-            pyautogui.moveTo(calibration['scroll_left_first'][0],calibration['scroll_left_first'][1])
-            pyautogui.dragTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1],1)
+            pyautogui.moveTo(most_left_monster['points'][0]['top_left'][0],most_left_monster['points'][0]['bottom_right'][1])
+            pyautogui.mouseDown()
+            pyautogui.moveTo(most_right_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_right_monster['points'][0]['bottom_right'][1],6)
+            pyautogui.mouseUp()
+            functions_general.randomWait( 1,0 )
     return    
-
-def scrollMaxRight(calibration):
-    numOfTimes = (100 // calibration['numoffoddersinlist']) + 1
-    scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left')
-    return
 
 def clickAndReturnMouse(img):
     orig_x,orig_y = pyautogui.position()

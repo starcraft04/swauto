@@ -10,7 +10,7 @@ import functions_opencv
 import functions_screenshot
 import functions_general
 
-def arena(tolerance,directories,calibration,allConfigs,wait_times):
+def arena(tolerance,directories,allConfigs,wait_times):
     for i in xrange (0,3):
         print 'scroll:%i' % i
         screenshot = functions_screenshot.screenshotOpencv(allConfigs)

@@ -55,14 +55,9 @@ def initConfigs():
     config = SafeConfigParser()
     config.read(configFile)
     
-    calibrationFile = os.path.join('config','calibration.ini')
-    calibrationConfig = SafeConfigParser()
-    calibrationConfig.read(calibrationFile)
-    
     allConfigs = {}
     
     allConfigs['runefarmingFoddersFiles'] = os.path.join('config','runefarming_fodders.ini')
-    allConfigs['calibrationFiles'] = calibrationFile
     allConfigs['logFiles'] = logFile
  
     tolerance = dict(config.items('tolerance'))
@@ -81,17 +76,6 @@ def initConfigs():
 
     allConfigs['directories'] = directories
 
-    calibration = {}
-    calibration['scroll_left_first'] = fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_first'))
-    calibration['scroll_left_last'] = fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_last'))
-    calibration['numoffoddersinlist'] = int(calibrationConfig.get('calibration', 'numoffoddersinlist'))
-    calibration['monster_icon_width'] = int(calibrationConfig.get('calibration', 'monster_icon_width'))
-    calibration['error_correction'] = int(config.get('error_correction','monster_scroll'))
-    for i in xrange(1,int(calibration['numoffoddersinlist'])+1):
-        calibration['fodder_'+str(i)+'_center'] = fromStringToTuple(calibrationConfig.get('calibration', 'fodder_'+str(i)+'_center'))
-
-    allConfigs['calibration'] = calibration
-
     resize = {}
     resize['resize_or_not'] = config.getboolean('resize','resize_or_not')
     resize['rapport'] = config.getfloat('resize','rapport')
@@ -102,8 +86,12 @@ def initConfigs():
     position = dictStringToInt(position_string)
     
     allConfigs['position'] = position
+    
+    error_correction = {}
+    error_correction['monster_scroll'] = int(config.get('error_correction','monster_scroll'))
+    allConfigs['error_correction'] = error_correction
 
-    return tolerance, wait_times, directories, calibration, allConfigs
+    return tolerance, wait_times, directories, allConfigs
 
 def main():
     print('function general')
