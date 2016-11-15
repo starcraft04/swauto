@@ -7,7 +7,7 @@ import pyautogui
 import functions_screenshot
 import sys
 from ConfigParser import SafeConfigParser 
-
+import functions_general
 
 def find_min_max(all_squares,axe,minormax):
     if axe == 'x':
@@ -29,7 +29,10 @@ def scrollMonsterBarRightToLeft(numOfTimes,calibration,direction = 'left'):
     for i in xrange(0,numOfTimes):
         if direction == 'left':
             pyautogui.moveTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1])
-            pyautogui.dragTo(calibration['scroll_left_first'][0]+calibration['error_correction'],calibration['scroll_left_first'][1],1)
+            pyautogui.mouseDown()
+            pyautogui.moveTo(calibration['scroll_left_first'][0]+calibration['error_correction'],calibration['scroll_left_first'][1],6)
+            pyautogui.mouseUp()
+            functions_general.randomWait( 1,0 )
         else:
             pyautogui.moveTo(calibration['scroll_left_first'][0],calibration['scroll_left_first'][1])
             pyautogui.dragTo(calibration['scroll_left_last'][0],calibration['scroll_left_last'][1],1)
@@ -274,7 +277,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
     logging.info('WAITING for: %s',images)
     logging.info('Waiting for maximum %d seconds',max_wait_number * frequency)
     
-    functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.jpg',directories,(150,100,800,300),allConfigs)
+    functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.png',directories,(250,120,550,220),allConfigs)
     time_orig = time.time()
     
     waiting = True
@@ -301,7 +304,7 @@ def waitForImg(images, tolerance, frequency, max_wait_seconds, directories,allCo
                 clickAndReturnMouse(freeze_test)
                 print 'Freeze detected'
                 time.sleep(5)
-            functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.jpg',directories,(200,200,300,300),allConfigs)
+            functions_screenshot.takeScreenshotCoordsFreeze('freeze_test_init.png',directories,(250,120,550,220),allConfigs)
             
         if max_wait_number <= 0:
             logging.debug('waitForImg took too much time and will return False')

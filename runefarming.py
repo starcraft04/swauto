@@ -26,7 +26,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
     while not endLoop:
         numOf['Time'] += 1
         numOf['fodder_full'] = 0
-        
+        startTime = time.time()
         if number_of_time > 0 and numOf['Time'] == number_of_time + 1:
             break
 
@@ -43,13 +43,13 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
 
             waiting_for = ['start_battle.png','autorun.png','not_enough_energy.png','next_stage.png','replay.png','defeated.png','revive.png','network_connection_delayed.png','network_delayed.png','unstable.png','victory.png','stage_clear.png']
 
-            running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
+            running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
             #Check first if we had an issue crash or network delayed
             #NETWORK DELAYED
             if running_result['res'] and (running_result['name'] == 'network_delayed.png' or running_result['name'] == 'unstable.png' or running_result['name'] == 'network_connection_delayed.png'):
-                wait_time = wait_times['screen_networkDelayed_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['networkDelayed']
+                random_wait = wait_times['random']
                 screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                 network_delayed_yes = functions_opencv.checkPicture(screenshot,'network_delayed_yes.png', tolerance ,directories,allConfigs)
                 functions_opencv.clickAndReturnMouse(network_delayed_yes)
@@ -59,8 +59,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             
             #START BATTLE
             elif running_result['res'] and running_result['name'] == 'start_battle.png':
-                wait_time = wait_times['screen_startBattle_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['startBattle']
+                random_wait = wait_times['random']
                 if noChangeFodders and numOf['fodder_full'] > 0:
                     logging.info('Number of fodders full: %s - Change fodders: %s',str(numOf['fodder_full']-1),str(not noChangeFodders))
                     sys.exit(0)
@@ -76,7 +76,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 result = functions_opencv.checkPicture(screenshot,'room_in_inventory.png', tolerance, directories,allConfigs)
                 if result['res']:
                     wait_time = wait_times['room_in_inventory']
-                    random_wait = wait_times['screen_wait_random']
+                    random_wait = wait_times['random']
                     screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                     if stage_type == 'cairos':
                         room_in_inventory_no = functions_opencv.checkPicture(screenshot,'room_in_inventory_no.png', tolerance ,directories,allConfigs)
@@ -102,8 +102,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 
             #Revive - coming from Hall of
             elif running_result['res'] and running_result['name'] == 'revive.png':
-                wait_time = wait_times['screen_revive_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['revive']
+                random_wait = wait_times['random']
                 screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                 revive_no = functions_opencv.checkPicture(screenshot,'revive_no.png', tolerance ,directories,allConfigs)
                 functions_opencv.clickAndReturnMouse(revive_no)
@@ -111,8 +111,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
 
             #Next stage - coming from ToA
             elif running_result['res'] and running_result['name'] == 'next_stage.png':
-                wait_time = wait_times['screen_defeated_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['defeated']
+                random_wait = wait_times['random']
                 functions_opencv.clickAndReturnMouse(running_result)
                 functions_general.randomWait( wait_time,random_wait ) 
                                    
@@ -120,8 +120,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             elif running_result['res'] and running_result['name'] == 'defeated.png':
                 defeated_found = True
                 numOf['defeat'] += 1
-                wait_time = wait_times['screen_defeated_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['defeated']
+                random_wait = wait_times['random']
                 functions_opencv.clickAndReturnMouse(running_result)
                 functions_general.randomWait( wait_time,random_wait )
                 #Printing some statistics
@@ -133,8 +133,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                     
             #AUTORUN
             elif running_result['res'] and running_result['name'] == 'autorun.png':
-                wait_time = wait_times['screen_autorun_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['autorun']
+                random_wait = wait_times['wait']
                 functions_opencv.clickAndReturnMouse(running_result)
                 functions_general.randomWait( wait_time,random_wait )
                 continue
@@ -143,9 +143,10 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             elif running_result['res'] and (running_result['name'] == 'victory.png' or running_result['name'] == 'stage_clear.png'):
                 victory_found = True
                 numOf['victory'] += 1
-                wait_time = wait_times['screen_victory_wait']
-                random_wait = wait_times['screen_wait_random']
-                max_level_wait = wait_times['screen_max_level_wait']
+                elapsedTime = (time.time() - startTime) / 60
+                wait_time = wait_times['victory']
+                random_wait = wait_times['wait']
+                max_level_wait = wait_times['max_level']
                 fodder_full = 0
                 if stage_type == 'xp':
                     #Waiting for the max level to appear
@@ -159,14 +160,15 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 functions_general.randomWait( wait_time,random_wait )
                 numOf['fodder_full'] = fodder_full
                 #Printing some statistics
+                print ('Time for this run: %f min' % (elapsedTime))
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
                 gift = False
-                wait_time = wait_times['screen_giftCAIROSXP_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['giftCAIROSXP']
+                random_wait = wait_times['wait']
                 while not gift:
-                    waiting_for_gift = ['rune_get.png','ok.png','chest.png']
-                    after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
-                    if after_victory_result['res'] and after_victory_result['name'] == 'chest.png':
+                    waiting_for_gift = ['rune_get.png','ok.png','chest.png','victory.png']
+                    after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    if after_victory_result['res'] and after_victory_result['name'] == 'chest.png' or after_victory_result['name'] == 'victory.png':
                         functions_opencv.clickAndReturnMouse(after_victory_result)
                     elif after_victory_result['res'] and after_victory_result['name'] == 'rune_get.png':
                         if stage_type == 'cairos':
@@ -187,8 +189,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             elif running_result['res'] and running_result['name'] == 'replay.png':
                 if int(numOf['Time']) == int(number_of_time):
                     break
-                wait_time = wait_times['screen_replay_wait']
-                random_wait = wait_times['screen_wait_random']
+                wait_time = wait_times['replay']
+                random_wait = wait_times['random']
                 if noChangeFodders and numOf['fodder_full'] > 0:
                     logging.info('Number of fodders full: %s - Change fodders: %s',str(numOf['fodder_full']),str(not noChangeFodders))
                     sys.exit(0)
@@ -199,27 +201,27 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 
             #NOT ENOUGH ENERGY
             elif running_result['res'] and running_result['name'] == 'not_enough_energy.png':
-                wait_time = wait_times['screen_notEnoughEnergy_wait']
-                random_wait = wait_times['screen_wait_random']
-                not_enough_energy_buy_yes_time = wait_times['screen_not_enough_energy_buy_yes_wait']
+                wait_time = wait_times['notEnoughEnergy']
+                random_wait = wait_times['random']
+                not_enough_energy_buy_yes_time = wait_times['not_enough_energy_buy_yes']
                 logging.info('Not enough energy')
                 if (numOf['recharge'] > 0):
                     logging.info('Number of recharges > 0 so we buy new energy')
                     numOf['recharge'] -= 1
-                    not_enough_energy_yes = functions_opencv.waitForImg(['not_enough_energy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    not_enough_energy_yes = functions_opencv.waitForImg(['not_enough_energy_yes.png'], tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_yes)
                     functions_general.randomWait( wait_time,random_wait )
-                    not_enough_energy_buy = functions_opencv.waitForImg(['not_enough_energy_buy.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    not_enough_energy_buy = functions_opencv.waitForImg(['not_enough_energy_buy.png'], tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_buy)
                     functions_general.randomWait( wait_time,random_wait )
-                    not_enough_energy_buy_yes = functions_opencv.waitForImg(['not_enough_energy_buy_yes.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    not_enough_energy_buy_yes = functions_opencv.waitForImg(['not_enough_energy_buy_yes.png'], tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_buy_yes)
                     #We need to wait a little bit because the next screen can come up pretty slowly
                     functions_general.randomWait( not_enough_energy_buy_yes_time,random_wait )
-                    not_enough_energy_bought_ok = functions_opencv.waitForImg(['not_enough_energy_bought_ok.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    not_enough_energy_bought_ok = functions_opencv.waitForImg(['not_enough_energy_bought_ok.png'], tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_bought_ok)
                     functions_general.randomWait( wait_time,random_wait )
-                    not_enough_energy_close = functions_opencv.waitForImg(['not_enough_energy_close.png'], tolerance, wait_times['image_wait'], wait_times['max_wait_seconds'],directories,allConfigs)
+                    not_enough_energy_close = functions_opencv.waitForImg(['not_enough_energy_close.png'], tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
                     functions_opencv.clickAndReturnMouse(not_enough_energy_close)
                     functions_general.randomWait( wait_time,random_wait )
                 else:
@@ -324,7 +326,7 @@ def main():
                     """put the window in the foreground"""
                     win32gui.MoveWindow(self._handle, allConfigs['position']['window_pos_x_'+i], allConfigs['position']['window_pos_y_'+i], allConfigs['position']['window_width_'+i], allConfigs['position']['window_height_'+i], True)
 
-            i = allConfigs['position']['window']
+            i = str(allConfigs['position']['window'])
             w = WindowMgr()
             w.find_window_wildcard(".*"+allConfigs['position']['window_name_'+i]+".*")
             w.set_foreground()

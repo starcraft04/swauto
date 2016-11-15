@@ -22,7 +22,7 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
         #Long press to get monster info
         functions_opencv.clickLongPress(coords,allConfigs['wait_times']['long_press_time'])
         waiting_for = ['close_monster_info.png']
-        close_button = functions_opencv.waitForImg(waiting_for, tolerance, allConfigs['wait_times']['image_wait'], allConfigs['wait_times']['max_monster_info_screen'],directories,allConfigs)
+        close_button = functions_opencv.waitForImg(waiting_for, tolerance, allConfigs['wait_times']['image'], allConfigs['wait_times']['max_monster_info_screen'],directories,allConfigs)
         if close_button['res']:
             info_screen_found = True
             break
@@ -32,7 +32,8 @@ def getMonsterInfo(tolerance,directories,calibration,coords,allConfigs):
     #Screenshot then take only the relevant part
     functions_general.randomWait( 1,0 )
     screenshot = functions_screenshot.screenshotOpencv(allConfigs)
-    crop_info = (calibration['level_top_left'],calibration['level_bottom_right'])
+    monster_info_location = functions_opencv.checkPicture(screenshot,'monster_info_location.png', tolerance ,directories,allConfigs)
+    crop_info = (monster_info_location['points'][0]['top_left'],monster_info_location['points'][0]['bottom_right'])
     screenshot_with_info = functions_opencv.cropToCoords(screenshot,crop_info)
 
     #Preparing the monster
@@ -90,12 +91,6 @@ def initCoordsRelToStartBattle(tolerance,directories,calibration,allConfigs):
         start_battle_center = (int(start_battle['points'][0]['center'][0]),int(start_battle['points'][0]['center'][1]))
 
         new_calibration = copy.deepcopy(allConfigs['calibration'])
-        
-        new_calibration['fodder_right'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['fodder_right'])
-        new_calibration['fodder_bottom'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['fodder_bottom'])
-        new_calibration['fodder_left'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['fodder_left'])
-        new_calibration['level_top_left'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['level_top_left'])
-        new_calibration['level_bottom_right'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['level_bottom_right'])
         new_calibration['scroll_left_first'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['scroll_left_first'])
         new_calibration['scroll_left_last'] = functions_calibration.coordsRelToPoint(start_battle_center,calibration['scroll_left_last'])
                 
@@ -128,15 +123,25 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
     max_num_of_fodders['2_stars'] = int(config.get('max_num_of_fodders_to_upgrade', '2_stars'))
     max_num_of_fodders['1_stars'] = int(config.get('max_num_of_fodders_to_upgrade', '1_stars'))
     
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+    fodders_location_all_4 = functions_opencv.checkPicture(screenshot,'fodders_location.png', tolerance ,directories,allConfigs)
+
+    halfHeight = (fodders_location_all_4['points'][0]['bottom_right'][1]-fodders_location_all_4['points'][0]['top_left'][1])/4
+    halfWidth = (fodders_location_all_4['points'][0]['bottom_right'][0]-fodders_location_all_4['points'][0]['top_left'][0])/4
+
+    fodder_right = (fodders_location_all_4['points'][0]['center'][0]+halfWidth,fodders_location_all_4['points'][0]['center'][1])
+    fodder_bottom = (fodders_location_all_4['points'][0]['center'][0],fodders_location_all_4['points'][0]['center'][1]+halfHeight)
+    fodder_left = (fodders_location_all_4['points'][0]['center'][0]-halfWidth,fodders_location_all_4['points'][0]['center'][1])
+    
     if fodder_full < 3:
         monsters = {}
         #We remove the monsters that are max
         logging.info('-----------------> Analysing right monster...')   
-        monsters['right'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_right'],allConfigs)
+        monsters['right'] = getMonsterInfo(tolerance,directories,calibration_from_start,fodder_right,allConfigs)
         logging.info('-----------------> Analysing left monster...')
-        monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_left'],allConfigs)
+        monsters['left'] = getMonsterInfo(tolerance,directories,calibration_from_start,fodder_left,allConfigs)
         logging.info('-----------------> Analysing bottom monster...')
-        monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,calibration_from_start['fodder_bottom'],allConfigs)
+        monsters['bottom'] = getMonsterInfo(tolerance,directories,calibration_from_start,fodder_bottom,allConfigs)
 
 
         numOfMaxMonsters = 0
@@ -160,10 +165,10 @@ def swapMonsters(tolerance,directories,calibration,fodder_full,allConfigs):
 
     else:
         numOfMaxMonsters = 3
-        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_right'])
-        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_left'])
-        functions_opencv.clickAndReturnMouseCoords(calibration_from_start['fodder_bottom'])
-
+        functions_opencv.clickAndReturnMouseCoords(fodder_right)
+        functions_opencv.clickAndReturnMouseCoords(fodder_left)
+        functions_opencv.clickAndReturnMouseCoords(fodder_bottom)
+    
     logging.info('Passing already maxed monsters by scrolling %d times',max_num_of_fodders['scroll_init'])
     functions_opencv.scrollMonsterBarRightToLeft(max_num_of_fodders['scroll_init'],calibration_from_start,direction = 'left')
 

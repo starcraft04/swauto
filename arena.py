@@ -38,7 +38,7 @@ def arena(tolerance,directories,calibration,allConfigs,wait_times):
                 while running:
                     functions_general.randomWait( 3,0 )
                     waiting_for = ['start_battle.png','arena_place.png','autorun.png','defeated.png','network_delayed.png','victory.png','arena_center.png','arena_center_finished.png']
-                    running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
+                    running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image'], wait_times['max_run_wait_seconds'],directories,allConfigs)
 
                     if running_result['name'] == 'arena_place.png':
                         break

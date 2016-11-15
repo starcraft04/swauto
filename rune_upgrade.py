@@ -19,7 +19,7 @@ def rune_upgrade(tolerance,directories,calibration,number_of_time,allConfigs,wai
             break
         
         waiting_for = ['power_up.png','power_up_finished.png']
-        running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image_wait'], wait_times['max_run_wait_seconds'],directories,allConfigs)
+        running_result = functions_opencv.waitForImg(waiting_for, tolerance, wait_times['image'], wait_times['max_run_wait_seconds'],directories,allConfigs)
         
         if running_result['res'] and running_result['name'] == 'power_up.png':
             print ('10x upgrade number: %d/%d' % (numOfTime,int(number_of_time)))

@@ -17,6 +17,14 @@ def fromStringToTuple(string):
     coords = (int(string[0]),int(string[1]))
     return coords
 
+def dictStringToInt(d):
+    for key, value in d.iteritems():
+        try:
+            d[key] = int(value)
+        except ValueError:
+            d[key] = str(value)
+    return d
+
 def initConfigs():
     
     #Getting the path to the program
@@ -61,30 +69,9 @@ def initConfigs():
 
     allConfigs['tolerance'] = tolerance
 
-    wait_times = {}
-    wait_times['image_wait'] = int(config.get('wait','image'))
-    wait_times['max_wait_seconds'] = int(config.get('wait','max_wait_seconds'))
-    wait_times['max_run_wait_seconds'] = int(config.get('wait','max_run_wait_seconds'))
-    wait_times['screen_victory_wait'] = int(config.get('wait','victory'))
-    wait_times['screen_networkDelayed_wait'] = int(config.get('wait','networkDelayed'))
-    wait_times['screen_autorun_wait'] = int(config.get('wait','autorun'))
-    wait_times['screen_revive_wait'] = int(config.get('wait','revive'))
-    wait_times['screen_defeated_wait'] = int(config.get('wait','defeated'))
-    wait_times['screen_replay_wait'] = int(config.get('wait','replay'))
-    wait_times['screen_startBattle_wait'] = int(config.get('wait','startBattle'))
-    wait_times['screen_notEnoughEnergy_wait'] = int(config.get('wait','notEnoughEnergy'))
-    wait_times['screen_giftTOAHOH_wait'] = int(config.get('wait','giftTOAHOH'))
-    wait_times['screen_giftCAIROSXP_wait'] = int(config.get('wait','giftCAIROSXP'))
-    wait_times['screen_chest_wait'] = int(config.get('wait','chest'))
-    wait_times['screen_nextstage_wait'] = int(config.get('wait','nextstage'))
-    wait_times['screen_wait_random'] = int(config.get('wait','random'))
-    wait_times['screen_not_enough_energy_buy_yes_wait'] = int(config.get('wait','not_enough_energy_buy_yes'))
-    wait_times['screen_max_level_wait'] = int(config.get('wait','max_level'))
-    wait_times['room_in_inventory'] = int(config.get('wait','room_in_inventory'))
-    wait_times['long_press_time'] = int(config.get('wait','long_press_time'))
-    wait_times['max_monster_info_screen'] = int(config.get('wait','max_monster_info_screen'))
-    wait_times['get_monster_info_max_num_times'] = int(config.get('wait','get_monster_info_max_num_times')) 
-
+    wait_times_string = dict(config.items('wait'))
+    wait_times = dictStringToInt(wait_times_string)
+    
     allConfigs['wait_times'] = wait_times
 	
     directories = {}
@@ -95,11 +82,6 @@ def initConfigs():
     allConfigs['directories'] = directories
 
     calibration = {}
-    calibration['fodder_right'] = fromStringToTuple(calibrationConfig.get('calibration', 'fodder_right'))
-    calibration['fodder_bottom'] = fromStringToTuple(calibrationConfig.get('calibration', 'fodder_bottom'))
-    calibration['fodder_left'] = fromStringToTuple(calibrationConfig.get('calibration', 'fodder_left'))
-    calibration['level_top_left'] = fromStringToTuple(calibrationConfig.get('calibration', 'level_top_left'))
-    calibration['level_bottom_right'] = fromStringToTuple(calibrationConfig.get('calibration', 'level_bottom_right'))
     calibration['scroll_left_first'] = fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_first'))
     calibration['scroll_left_last'] = fromStringToTuple(calibrationConfig.get('calibration', 'scroll_left_last'))
     calibration['numoffoddersinlist'] = int(calibrationConfig.get('calibration', 'numoffoddersinlist'))
@@ -116,25 +98,8 @@ def initConfigs():
 
     allConfigs['resize'] = resize
     
-    position = {}
-    position['system'] = str(config.get('position','system'))
-    position['window'] = str(config.get('position','window'))
-    position['window_name_1'] = str(config.get('position','window_name_1'))
-    position['window_pos_x_1'] = int(config.get('position','window_pos_x_1'))
-    position['window_pos_y_1'] = int(config.get('position','window_pos_y_1'))
-    position['window_width_1'] = int(config.get('position','window_width_1'))
-    position['window_height_1'] = int(config.get('position','window_height_1'))
-    position['window_name_2'] = str(config.get('position','window_name_2'))
-    position['window_pos_x_2'] = int(config.get('position','window_pos_x_2'))
-    position['window_pos_y_2'] = int(config.get('position','window_pos_y_2'))
-    position['window_width_2'] = int(config.get('position','window_width_2'))
-    position['window_height_2'] = int(config.get('position','window_height_2'))
-    position['window_start_x'] = int(config.get('position','window_start_x'))
-    position['window_start_y'] = int(config.get('position','window_start_y'))
-    position['window_end_x'] = int(config.get('position','window_end_x'))
-    position['window_end_y'] = int(config.get('position','window_end_y'))
-    position['pos_resize'] = str(config.get('position','pos_resize'))
-    position['crop_window'] = str(config.get('position','crop_window'))
+    position_string = dict(config.items('position'))
+    position = dictStringToInt(position_string)
     
     allConfigs['position'] = position
 
