@@ -41,15 +41,15 @@ def scrollMonsterBarRightToLeft(numOfTimes,allConfigs,direction = 'left'):
         if direction == 'left':
             pyautogui.moveTo(most_right_monster['points'][0]['top_left'][0],most_right_monster['points'][0]['bottom_right'][1])
             pyautogui.mouseDown()
-            pyautogui.moveTo(most_left_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_left_monster['points'][0]['bottom_right'][1],6)
+            pyautogui.moveTo(most_left_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_left_monster['points'][0]['bottom_right'][1],allConfigs['wait_times']['scroll_speed'])
             pyautogui.mouseUp()
-            functions_general.randomWait( 1,0 )
+            functions_general.randomWait( allConfigs['wait_times']['between_scrolls'],0 )
         else:
             pyautogui.moveTo(most_left_monster['points'][0]['top_left'][0],most_left_monster['points'][0]['bottom_right'][1])
             pyautogui.mouseDown()
-            pyautogui.moveTo(most_right_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_right_monster['points'][0]['bottom_right'][1],6)
+            pyautogui.moveTo(most_right_monster['points'][0]['top_left'][0]+int(allConfigs['error_correction']['monster_scroll']),most_right_monster['points'][0]['bottom_right'][1],allConfigs['wait_times']['scroll_speed'])
             pyautogui.mouseUp()
-            functions_general.randomWait( 1,0 )
+            functions_general.randomWait( allConfigs['wait_times']['between_scrolls'],0 )
     return    
 
 def clickAndReturnMouse(img):
@@ -67,7 +67,6 @@ def clickAndReturnMouse_point(point):
     logging.info('CLICK')
     pyautogui.moveTo(orig_x, orig_y)
     return
-
 
 def clickAndReturnMouseCoords(coords):
     orig_x,orig_y = pyautogui.position()
@@ -211,7 +210,7 @@ def findPicture(screenshot,template, tolerance,allConfigs, multiple = False):
         logging.debug('The points found will be:')
         logging.debug(all_matches)
         logging.debug('*************End of checkPicture')
-        return {'res': True,'points':all_matches}
+        return {'res': True,'best_val':best_val,'points':all_matches}
     else:
         bottom_right = (top_left[0] + w, top_left[1] + h)
         center = (top_left[0] + (w/2), top_left[1] + (h/2))
@@ -221,6 +220,25 @@ def findPicture(screenshot,template, tolerance,allConfigs, multiple = False):
         logging.debug('*************End of findPicture')
         return {'res': False,'best_val':best_val,'points':all_matches}
 
+def findAllPictureFiles(base_filename,directory):
+    allPictureFiles = []
+    onlyfiles = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+    for myfile in onlyfiles:
+        if myfile.startswith(base_filename):
+            allPictureFiles.append(myfile)
+    return allPictureFiles
+
+def twoSquaresDoOverlap(squareA,squareB):
+    #The two squares must have coordinates in the form of named list with name top_left and bottom_right
+    overlap = True
+    if squareA['top_left'][1] > squareB['bottom_right'][1] or \
+            squareA['top_left'][0] > squareB['bottom_right'][0] or \
+            squareA['bottom_right'][0] < squareB['top_left'][0] or \
+            squareA['bottom_right'][1] < squareB['top_left'][1]:
+        overlap = False
+            
+    return overlap
+    
 def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfigs,multiple = False, showFound = False, saveFound = False):
     
     #This is an intermediary function so that the actual function doesn't include too much specific arguments
@@ -232,26 +250,47 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
 
     font = cv2.FONT_HERSHEY_PLAIN
     
-    template = cv2.imread(os.path.join(directories['basepicsdir'],templateFile),-1)
-    h = template.shape[0]
-    w = template.shape[1] 
+    #Here we will detect all files that have the same base name ex: victory.png, victory02.png, ...
+    allTemplateFiles = findAllPictureFiles(templateFile[:-4],directories['basepicsdir'])
+    result = {}
+    result['res'] = False
+    result['best_val'] = 0
+    result['points'] = []
+    
+    for templateFile in allTemplateFiles:
+    
+        template = cv2.imread(os.path.join(directories['basepicsdir'],templateFile),-1)
 
-    resize_or_not = allConfigs['resize']['resize_or_not']
-    resize_rapport = allConfigs['resize']['rapport']
-    if resize_or_not:
-        logging.info('Resizing the template image with a rapport of %f',resize_rapport)       
-        dim = (int(w*resize_rapport), int(h*resize_rapport))
-        template = cv2.resize(template, dim, interpolation = cv2.INTER_AREA)
+        #The value -1 means we keep the file as is meaning with color and alpha channel if any
+        #   btw, 0 means grayscale and 1 is color
 
+        #Now we search in the picture
+        result_temp = findPicture(screenshot,template, tolerance,allConfigs, multiple)
         
-    
-    #The value -1 means we keep the file as is meaning with color and alpha channel if any
-    #   btw, 0 means grayscale and 1 is color
-    
-    #Now we search in the picture
-    result = findPicture(screenshot,template, tolerance,allConfigs, multiple)
+        if result_temp['res'] == True:
+            if result['res'] == False:
+                result['points'] = []
+            result['res'] = result_temp['res']
+            result['best_val'] = result_temp['best_val']
+            #!!!!! Attention, if the images are close to each other, there could be overlaps !!!!!!
+            
+            for result_temp_point in result_temp['points']:
+                overlap = False
+                for result_point in result['points']:
+                    overlap = twoSquaresDoOverlap(result_point,result_temp_point)
+                    if overlap:
+                        break
+                if not overlap:
+                    result['points'].append(result_temp_point)
+            result['name']=templateFile
+
+        else:
+            if result['res'] == False:
+                result['best_val'] = result_temp['best_val']
+                result['points'].extend(result_temp['points'])
+                result['name']=templateFile
+        
     #If it didn't get any result, we log the best value
-    
     if not result['res']:
         logging.debug('Best value found for %s is: %f',templateFile,result['best_val'])
         color_showFound = (0,0,255)
@@ -274,8 +313,6 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
         if showFound:
             cv2.imshow('showFound',screenshot_with_rectangle)
             cv2.waitKey(0)
-                
-    result['name']=templateFile
     
     return result
 
