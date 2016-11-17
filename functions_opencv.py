@@ -225,7 +225,8 @@ def findAllPictureFiles(base_filename,directory):
     onlyfiles = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
     for myfile in onlyfiles:
         if myfile.startswith(base_filename):
-            allPictureFiles.append(myfile)
+            if not myfile[len(base_filename):].startswith('_'):
+                allPictureFiles.append(myfile)
     return allPictureFiles
 
 def twoSquaresDoOverlap(squareA,squareB):

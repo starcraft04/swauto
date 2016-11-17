@@ -46,7 +46,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             #Check first if we had an issue crash or network delayed
             #NETWORK DELAYED
             if running_result['res'] and (running_result['name'] == 'network_delayed.png' or running_result['name'] == 'unstable.png' or running_result['name'] == 'network_connection_delayed.png'):
-                wait_time = wait_times['networkDelayed']
+                wait_time = wait_times['networkdelayed']
                 random_wait = wait_times['random']
                 screenshot = functions_screenshot.screenshotOpencv(allConfigs)
                 network_delayed_yes = functions_opencv.checkPicture(screenshot,'network_delayed_yes.png', tolerance ,directories,allConfigs)
@@ -57,7 +57,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             
             #START BATTLE
             elif running_result['res'] and running_result['name'] == 'start_battle.png':
-                wait_time = wait_times['startBattle']
+                wait_time = wait_times['startbattle']
                 random_wait = wait_times['random']
                 if noChangeFodders and numOf['fodder_full'] > 0:
                     logging.info('Number of fodders full: %s - Change fodders: %s',str(numOf['fodder_full']-1),str(not noChangeFodders))
@@ -132,7 +132,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             #AUTORUN
             elif running_result['res'] and running_result['name'] == 'autorun.png':
                 wait_time = wait_times['autorun']
-                random_wait = wait_times['wait']
+                random_wait = wait_times['random']
                 functions_opencv.clickAndReturnMouse(running_result)
                 functions_general.randomWait( wait_time,random_wait )
                 continue
@@ -143,7 +143,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 numOf['victory'] += 1
                 elapsedTime = (time.time() - startTime) / 60
                 wait_time = wait_times['victory']
-                random_wait = wait_times['wait']
+                random_wait = wait_times['random']
                 max_level_wait = wait_times['max_level']
                 fodder_full = 0
                 if stage_type == 'xp':
@@ -161,8 +161,8 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 print ('Time for this run: %f min' % (elapsedTime))
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
                 gift = False
-                wait_time = wait_times['giftCAIROSXP']
-                random_wait = wait_times['wait']
+                wait_time = wait_times['giftcairosxp']
+                random_wait = wait_times['random']
                 while not gift:
                     waiting_for_gift = ['rune_get.png','ok.png','chest.png','victory.png']
                     after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
@@ -199,7 +199,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 
             #NOT ENOUGH ENERGY
             elif running_result['res'] and running_result['name'] == 'not_enough_energy.png':
-                wait_time = wait_times['notEnoughEnergy']
+                wait_time = wait_times['notenoughenergy']
                 random_wait = wait_times['random']
                 not_enough_energy_buy_yes_time = wait_times['not_enough_energy_buy_yes']
                 logging.info('Not enough energy')
