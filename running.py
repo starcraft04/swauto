@@ -19,6 +19,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
     numOf['defeat'] = 0
     numOf['recharge'] = numOfRecharge
     numOf['Time'] = 0
+    allElapsedTimes = []
     endLoop = False
     #Looping
     while not endLoop:
@@ -141,7 +142,6 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             elif running_result['res'] and (running_result['name'] == 'victory.png' or running_result['name'] == 'stage_clear.png'):
                 victory_found = True
                 numOf['victory'] += 1
-                elapsedTime = (time.time() - startTime) / 60
                 wait_time = wait_times['victory']
                 random_wait = wait_times['random']
                 max_level_wait = wait_times['max_level']
@@ -158,7 +158,13 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 functions_general.randomWait( wait_time,random_wait )
                 numOf['fodder_full'] = fodder_full
                 #Printing some statistics
-                print ('Time for this run: %f min' % (elapsedTime))
+                elapsedTime = (time.time() - startTime)
+                allElapsedTimes.append(elapsedTime)
+                average = sum(allElapsedTimes) / float(len(allElapsedTimes))
+                elapsedTime_m, elapsedTime_s = divmod(elapsedTime, 60)
+                average_m, average_s = divmod(average, 60)
+                print 'Time for this run: {:02.0f} minute(s) {:07.4f} seconds'.format(elapsedTime_m, elapsedTime_s)
+                print 'Average time for all runs: {:02.0f} minute(s) {:07.4f} seconds'.format(average_m, average_s)
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
                 gift = False
                 wait_time = wait_times['giftcairosxp']

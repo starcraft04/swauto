@@ -257,10 +257,12 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
     result['res'] = False
     result['best_val'] = 0
     result['points'] = []
+    result['nameVersions'] = []
+    result['name'] = templateFile
     
-    for templateFile in allTemplateFiles:
+    for templateFileName in allTemplateFiles:
     
-        template = cv2.imread(os.path.join(directories['basepicsdir'],templateFile),-1)
+        template = cv2.imread(os.path.join(directories['basepicsdir'],templateFileName),-1)
 
         #The value -1 means we keep the file as is meaning with color and alpha channel if any
         #   btw, 0 means grayscale and 1 is color
@@ -271,6 +273,7 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
         if result_temp['res'] == True:
             if result['res'] == False:
                 result['points'] = []
+                result['nameVersions'] = []
             result['res'] = result_temp['res']
             result['best_val'] = result_temp['best_val']
             #!!!!! Attention, if the images are close to each other, there could be overlaps !!!!!!
@@ -283,13 +286,13 @@ def checkPicture(screenshot, templateFile, tolerance_list ,directories,allConfig
                         break
                 if not overlap:
                     result['points'].append(result_temp_point)
-            result['name']=templateFile
+            result['nameVersions'].append(templateFileName)
 
         else:
             if result['res'] == False:
                 result['best_val'] = result_temp['best_val']
                 result['points'].extend(result_temp['points'])
-                result['name']=templateFile
+                result['nameVersions'].append(templateFileName)
         
     #If it didn't get any result, we log the best value
     if not result['res']:

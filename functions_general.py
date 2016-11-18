@@ -179,13 +179,16 @@ def calibrate(tolerance, directories,allConfigs):
 def imageTest(testFile,tolerance, directories,allConfigs):
     screenshot = functions_screenshot.screenshotOpencv(allConfigs)
     result = functions_opencv.checkPicture(screenshot,testFile, tolerance, directories,allConfigs, multiple = True, showFound = True)
+    print 'Looked for %s' % (result['name'])
     if not result['res']:
         if testFile[:-4] in tolerance:
             tolerance = float(tolerance[testFile[0][:-4]])
         else:
             tolerance = float(tolerance['global'])
-        print ('Tolerance for file %s is: %f' % (testFile,tolerance))
         print ('Best tolerance found is: %f' % (result['best_val']))
+    else:
+        for name in result['nameVersions']:
+            print '- %s found' % (name)
 
 def main():
     print('function general')
