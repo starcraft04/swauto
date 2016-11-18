@@ -4,6 +4,11 @@ import sys
 import os
 from random import randint
 from ConfigParser import SafeConfigParser
+import win32gui
+import re
+import ctypes
+import functions_screenshot
+import functions_opencv
 
 def randomWait(wait_time, random_wait):
     wait_time = wait_time + randint(0,random_wait)
@@ -89,9 +94,98 @@ def initConfigs():
     
     error_correction = {}
     error_correction['monster_scroll'] = int(config.get('error_correction','monster_scroll'))
+    
     allConfigs['error_correction'] = error_correction
 
     return tolerance, wait_times, directories, allConfigs
+
+class WindowMgr:
+    """Encapsulates some calls to the winapi for window management"""
+    def __init__ (self):
+        """Constructor"""
+        self._handle = None
+
+    def find_window(self, class_name, window_name = None):
+        """find a window by its class_name"""
+        self._handle = win32gui.FindWindow(class_name, window_name)
+
+    def _window_enum_callback(self, hwnd, wildcard):
+        '''Pass to win32gui.EnumWindows() to check all the opened windows'''
+        if re.match(wildcard, str(win32gui.GetWindowText(hwnd))) != None:
+            self._handle = hwnd
+
+    def find_window_wildcard(self, wildcard):
+        self._handle = None
+        win32gui.EnumWindows(self._window_enum_callback, wildcard)
+
+    def set_foreground(self):
+        """put the window in the foreground"""
+        win32gui.SetForegroundWindow(self._handle)
+
+    def move_window(self,x,y,w,h,allConfigs,i):
+        """put the window in the foreground"""
+        win32gui.MoveWindow(self._handle, x,y,w,h, True)
+        
+    def get_original_window_size(self,allConfigs):
+        rect = win32gui.GetWindowRect(self._handle)
+        x = rect[0]
+        y = rect[1]
+        orig_width = rect[2] - x
+        orig_height = rect[3] - y
+        return x,y,orig_width, orig_height
+           
+def windowResizeAndPosition(workspace,allConfigs):        
+    i = str(allConfigs['position']['window'])
+    w = WindowMgr()
+    w.find_window_wildcard(".*"+allConfigs['position']['window_name_'+i]+".*")
+    w.set_foreground()
+    w.move_window(allConfigs['position']['window_pos_x_'+i], allConfigs['position']['window_pos_y_'+i], allConfigs['position']['window_width_'+i], allConfigs['position']['window_height_'+i],allConfigs,i)
+
+def calibrate(tolerance, directories,allConfigs):
+    testFile = allConfigs['position']['testfile']
+    iteration = allConfigs['position']['calibration_num_of_iteration']
+    print ('Go to a scenario where you have to select your monsters')
+    print ('As soon as enter is pressed, you will go through several screens and try to note down the image where most of your monsters are selected')
+    raw_input("Press Enter to continue...")
+    i = str(allConfigs['position']['window'])
+    w = WindowMgr()
+    w.find_window_wildcard(".*"+allConfigs['position']['window_name_'+i]+".*")
+    w.set_foreground()
+    orig_x,orig_y,orig_width, orig_height = w.get_original_window_size(allConfigs)
+    new_width = allConfigs['position']['window_width_'+i]
+    rapport = float(new_width)/float(orig_width)
+    new_height = int(rapport*orig_height)
+    print "Orig width: %d - Orig height: %d" % (orig_width,orig_height)
+    print "New width: %d - New height: %d" % (new_width,new_height)
+    for test_height in range(new_height-iteration,new_height+iteration):
+        print "Testing with height of %d" % (test_height)
+        print "Select window called showFound and hit enter"
+        w.move_window(allConfigs['position']['window_pos_x_'+i], allConfigs['position']['window_pos_y_'+i], new_width, test_height,allConfigs,i)
+        imageTest(testFile,tolerance, directories,allConfigs)
+    
+    best_height = raw_input('Which height gave the best result:')
+    
+    #We read the config file
+    configFile = os.path.join('config','runefarming.ini')
+    config = SafeConfigParser()
+    config.read(configFile)
+    
+    config.set('position', 'window_height_'+i, str(best_height))
+    
+    #We finish by writing everything in the config file
+    with open(configFile, 'wb') as f:
+        config.write(f)
+    
+def imageTest(testFile,tolerance, directories,allConfigs):
+    screenshot = functions_screenshot.screenshotOpencv(allConfigs)
+    result = functions_opencv.checkPicture(screenshot,testFile, tolerance, directories,allConfigs, multiple = True, showFound = True)
+    if not result['res']:
+        if testFile[:-4] in tolerance:
+            tolerance = float(tolerance[testFile[0][:-4]])
+        else:
+            tolerance = float(tolerance['global'])
+        print ('Tolerance for file %s is: %f' % (testFile,tolerance))
+        print ('Best tolerance found is: %f' % (result['best_val']))
 
 def main():
     print('function general')
