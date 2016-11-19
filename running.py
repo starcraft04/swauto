@@ -142,7 +142,6 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
             elif running_result['res'] and (running_result['name'] == 'victory.png' or running_result['name'] == 'stage_clear.png'):
                 victory_found = True
                 numOf['victory'] += 1
-                wait_time = wait_times['victory']
                 random_wait = wait_times['random']
                 max_level_wait = wait_times['max_level']
                 fodder_full = 0
@@ -155,7 +154,7 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                         fodder_full = len(max_level['points']) - 1
                     logging.info('-----------------> Number of monsters full: %d',fodder_full)
                 functions_opencv.clickAndReturnMouse(running_result)
-                functions_general.randomWait( wait_time,random_wait )
+                functions_general.randomWait( wait_times['victory'],random_wait )
                 numOf['fodder_full'] = fodder_full
                 #Printing some statistics
                 elapsedTime = (time.time() - startTime)
@@ -167,12 +166,13 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                 print 'Average time for all runs: {:02.0f} minute(s) {:07.4f} seconds'.format(average_m, average_s)
                 print ('Victory: %d - Defeat: %d - Recharges left: %d' % (numOf['victory'],numOf['defeat'],numOf['recharge']))
                 gift = False
-                wait_time = wait_times['giftcairosxp']
-                random_wait = wait_times['random']
+                max_num_of_tries = 20
                 while not gift:
-                    waiting_for_gift = ['rune_get.png','ok.png','chest.png','victory.png']
+                    waiting_for_gift = ['rune_get.png','ok.png','chest.png','victory.png','stage_clear.png']
                     after_victory_result = functions_opencv.waitForImg(waiting_for_gift, tolerance, wait_times['image'], wait_times['max_wait_seconds'],directories,allConfigs)
-                    if after_victory_result['res'] and after_victory_result['name'] == 'chest.png' or after_victory_result['name'] == 'victory.png':
+                    if after_victory_result['res'] and after_victory_result['name'] == 'chest.png' or \
+                                                        after_victory_result['name'] == 'victory.png' or \
+                                                        after_victory_result['name'] == 'stage_clear.png':
                         functions_opencv.clickAndReturnMouse(after_victory_result)
                     elif after_victory_result['res'] and after_victory_result['name'] == 'rune_get.png':
                         if stage_type == 'cairos':
@@ -185,8 +185,12 @@ def running(stage_type,noChangeFodders,numOfRecharge,number_of_time, tolerance, 
                     elif after_victory_result['res'] and after_victory_result['name'] == 'ok.png':
                         functions_opencv.clickAndReturnMouse(after_victory_result)
                         gift = True
-
-                    functions_general.randomWait( wait_time,random_wait )
+                    functions_general.randomWait( wait_times['giftcairosxp'],random_wait )
+                    
+                    max_num_of_tries -= 1
+                    if max_num_of_tries < 0:
+                        break
+                functions_general.randomWait( wait_times['aftergift'],random_wait )  
                 continue
 
             #REPLAY
